@@ -79,13 +79,16 @@ header button{
 /* القائمة */
 #menu{
     display:none;
-    position:fixed;
-    top:80px;
-    right:20px;
+    position: fixed; /* بدل position: static */
+    top: 60px;       /* فوق الزر شوي */
+    right: 20px;     /* جنب الزر */
     background:#12001f;
     padding:12px;
     border-radius:15px;
     box-shadow:0 0 20px #3a0070;
+    z-index: 1000;   /* فوق كل العناصر */
+}
+
 }
 #menu button{
     display:block;
