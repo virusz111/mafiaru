@@ -235,7 +235,7 @@ var menuSound = new Audio('menu-sound.mp3');
 
 // عند تسجيل الدخول
 function enter(){
-    loginSound.play();
+    loginSound.play().catch(()=>{}); // لتجنب مشاكل المتصفح
     document.getElementById("login").style.display="none";
     document.getElementById("content").style.display="block";
     document.getElementById("header").style.display="flex";
@@ -243,7 +243,7 @@ function enter(){
 
 // عند الضغط على الخطاط
 function toggleMenu(){
-    menuSound.play();
+    menuSound.play().catch(()=>{});
     let menu = document.getElementById("menuButtons");
     menu.style.display = menu.style.display==="flex"?"none":"flex";
 }
@@ -264,109 +264,6 @@ function showCards(group){
 function playSound(file){
     var audio = new Audio(file);
     audio.play();
-}
-</script>
-
-</body>
-</html></head>
-<body>
-
-<!-- تسجيل الدخول -->
-<div class="login-screen" id="login">
-    <button onclick="enter()">تسجيل دخول</button>
-</div>
-
-<!-- الهيدر -->
-<header id="header">
-    <button onclick="toggleMenu()">≡</button>
-</header>
-
-<div class="container" id="content">
-<div class="cards">
-
-<!-- الترحيب -->
-<div class="card big">
-    <div class="icon">☠</div>
-    أهلاً بك في عالم المافيا الروسية<br><br>
-    اضغط على زر ≡ أعلاه لرؤية الخيارات
-</div>
-
-</div>
-
-<!-- قائمة الأزرار -->
-<div class="menuButtons" id="menuButtons">
-    <button onclick="showCards('laws')">☠ القوانين</button>
-    <button onclick="showCards('weapons')">☠ الأسلحة</button>
-    <button onclick="showCards('gangs')">☠ العصابات</button>
-    <button onclick="showCards('leaders')">☠ المافيا الروسية</button>
-    <button onclick="showCards('language')">☠ تعليم اللغة</button>
-</div>
-
-<!-- Cards لكل شيء -->
-<div class="cards" id="allCards" style="display:none; margin-top:15px;">
-
-<!-- القوانين -->
-<div class="card" data-group="laws">
-    <div class="icon">☠</div>قوانين المافيا
-</div>
-
-<!-- الأسلحة -->
-<div class="card" data-group="weapons"><div class="icon">☠</div>AK-47</div>
-<div class="card" data-group="weapons"><div class="icon">☠</div>Deagle</div>
-<div class="card" data-group="weapons"><div class="icon">☠</div>C4</div>
-<div class="card" data-group="weapons"><div class="icon">☠</div>Glock 20</div>
-<div class="card" data-group="weapons"><div class="icon">☠</div>Pistol .50</div>
-
-<!-- العصابات -->
-<div class="card" data-group="gangs"><div class="icon">☠</div>سكراب</div>
-<div class="card" data-group="gangs"><div class="icon">☠</div>لا يوجد</div>
-
-<!-- المسؤولين -->
-<div class="card" data-group="leaders"><div class="icon">☠</div>المسؤول مجهول الهوية</div>
-<div class="card" data-group="leaders"><div class="icon">☠</div>نائب مسؤول مجهول الهوية</div>
-<div class="card" data-group="leaders"><div class="icon">☠</div>مساعد مسؤول ايفان ماكسيم</div>
-<div class="card" data-group="leaders"><div class="icon">☠</div>مساعد مسؤول اليكس ماكسيم</div>
-<div class="card" data-group="leaders"><div class="icon">☠</div>مساعد مسؤول بيتر ماكسيم</div>
-<div class="card" data-group="leaders"><div class="icon">☠</div>مساعد مسؤول الفا ماكسيم</div>
-<div class="card" data-group="leaders"><div class="icon">☠</div>مسؤول الاعضاء ديمتري ماكسيم</div>
-<div class="card" data-group="leaders"><div class="icon">☠</div>مسؤول الاعضاء سيرغى ماكسيم</div>
-<div class="card" data-group="leaders"><div class="icon">☠</div>عضو فيكتور ماكسيم</div>
-<div class="card" data-group="leaders"><div class="icon">☠</div>عضو جونيور ماكسيم</div>
-<div class="card" data-group="leaders"><div class="icon">☠</div>عضو سكاي ماكسيم</div>
-<div class="card" data-group="leaders"><div class="icon">☠</div>عضو انتوني ماكسيم</div>
-    
-<!-- تعليم اللغة -->
-<div class="card" data-group="language"><div class="icon">🇷🇺</div>Здравствуйте<br><span style="font-size:.9em;opacity:.85">مرحبا</span></div>
-<div class="card" data-group="language"><div class="icon">🇷🇺</div>Готовы<br><span style="font-size:.9em;opacity:.85">استعدوا</span></div>
-<div class="card" data-group="language"><div class="icon">🇷🇺</div>Привет<br><span style="font-size:.9em;opacity:.85">أهلا</span></div>
-<div class="card" data-group="language"><div class="icon">🇷🇺</div>Спасибо<br><span style="font-size:.9em;opacity:.85">شكراً</span></div>
-<div class="card" data-group="language"><div class="icon">🇷🇺</div>Пока<br><span style="font-size:.9em;opacity:.85">إلى اللقاء</span></div>
-<div class="card" data-group="language"><div class="icon">🇷🇺</div>Да<br><span style="font-size:.9em;opacity:.85">نعم</span></div>
-<div class="card" data-group="language"><div class="icon">🇷🇺</div>Нет<br><span style="font-size:.9em;opacity:.85">لا</span></div>
-
-</div>
-
-<script>
-function enter(){
-    document.getElementById("login").style.display="none";
-    document.getElementById("content").style.display="block";
-    document.getElementById("header").style.display="flex";
-}
-
-function toggleMenu(){
-    let menu = document.getElementById("menuButtons");
-    menu.style.display = menu.style.display==="flex"?"none":"flex";
-}
-
-function showCards(group){
-    document.getElementById("allCards").style.display="grid";
-    document.querySelectorAll('#allCards .card').forEach(c=>{
-        if(c.getAttribute('data-group')===group){
-            c.style.display='block';
-        }else{
-            c.style.display='none';
-        }
-    });
 }
 </script>
 
