@@ -140,7 +140,7 @@ header button{
         <input type="text" id="username" placeholder="الاسم">
         <input type="password" id="password" placeholder="الرمز">
         <button onclick="login()">دخول</button>
-        <div id="error">.الاسم أو الرمز غير صحيح</div>
+        <div id="error">الاسم أو الرمز غير صحيح</div>
     </div>
 </div>
 
@@ -154,8 +154,7 @@ header button{
     <button onclick="showSection('welcome')">☠ الترحيب</button>
     <button onclick="showSection('laws')">☠ القوانين</button>
     <button onclick="showSection('weapons')">☠ الأسلحة</button>
-    <button onclick="showSection('leaders')">☠ المسؤولين و الاعضاء</button>
-    <button onclick="showSection('gangs')">☠ العصابات</button>
+    <button onclick="showSection('leaders')">☠ المسؤولين</button>
 </div>
 
 <!-- المحتوى -->
@@ -163,7 +162,7 @@ header button{
 <div class="cards">
 
 <div class="card big welcome" data-type="welcome">
-☠ أهلاً بك بيتر ماكسيم<br>في عالم المافيا الروسية
+☠ أهلاً بك <span id="userDisplay">بيتر ماكسيم</span><br>في عالم المافيا الروسية
 </div>
 
 <div class="card big" data-type="laws">☠ قوانين المافيا</div>
@@ -175,30 +174,32 @@ header button{
 
 <div class="card big" data-type="leaders">☠ المسؤولين</div>
 <div class="card" data-type="leaders">☠ بيتر ماكسيم</div>
-
-<div class="card big" data-type="gangs">☠ العصابات</div>
-<div class="card" data-type="gangs">☠ السكراب</div>
+<div class="card" data-type="leaders">☠ اليكس ماكسيم</div>
 
 </div>
 </div>
 
 <script>
-// بيانات الدخول
-const USERNAME = "اليكس ماكسيم";
-const PASSWORD = "ba95ba";
-    
+// بيانات الدخول: أكثر من حساب
+const ACCOUNTS = [
+    {user:"بيتر ماكسيم", pass:"2008"},
+    {user:"اليكس ماكسيم", pass:"ba95ba"}
+];
+
 function login(){
     const u = document.getElementById("username").value.trim();
     const p = document.getElementById("password").value.trim();
-    if(u === USERNAME && p === PASSWORD){
+    const match = ACCOUNTS.find(a=>a.user===u && a.pass===p);
+    if(match){
         const loginDiv = document.getElementById("login");
-        loginDiv.style.opacity = "0";  // أنيميشن fade
+        loginDiv.style.opacity = "0";
         setTimeout(()=>{
             loginDiv.style.display="none";
             document.getElementById("content").style.display="block";
             document.getElementById("header").style.display="block";
+            document.getElementById("userDisplay").innerText = match.user;
             showSection('welcome');
-        },600); // نفس مدة الانيميشن
+        },600);
     }else{
         document.getElementById("error").style.display="block";
     }
