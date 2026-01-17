@@ -13,7 +13,7 @@ body{
     color:#eee;
 }
 
-/* شاشة تسجيل الدخول */
+/* تسجيل الدخول */
 #login{
     position:fixed;
     inset:0;
@@ -33,53 +33,28 @@ body{
     cursor:pointer;
 }
 
-/* زر الشخطات ثابت */
+/* زر الشخطات */
 header{
     display:none;
     position:fixed;
     top:20px;
     right:20px;
-    z-index:99999;
+    z-index:9999;
 }
 header button{
-    width:48px;
-    height:48px;
-    background:rgba(122,44,255,0.9);
+    background:#7a2cff;
     color:#fff;
     border:none;
     font-size:1.8em;
-    border-radius:12px;
-    cursor:pointer;
-    box-shadow:0 0 15px rgba(122,44,255,0.6);
-}
-
-/* القائمة تطلع تحت الزر */
-#menu{
-    position:fixed;
-    top:80px;
-    right:20px;
-    display:none;
-    flex-direction:column;
-    gap:10px;
-    background:rgba(20,0,34,0.95);
-    padding:15px;
-    border-radius:20px;
-    box-shadow:0 0 25px rgba(122,44,255,0.5);
-    z-index:99998;
-}
-#menu button{
-    padding:12px 18px;
-    border:none;
-    border-radius:15px;
-    background:#7a2cff;
-    color:#fff;
+    padding:10px 14px;
+    border-radius:10px;
     cursor:pointer;
 }
 
 /* المحتوى */
 #content{
     display:none;
-    padding:120px 15px 20px;
+    padding:120px 15px 30px;
 }
 
 .cards{
@@ -88,24 +63,153 @@ header button{
     gap:15px;
 }
 
-/* Card كبير */
-.card.big{
-    grid-column:1/-1;
-    padding:40px 20px;
-    text-align:center;
-    border-radius:20px;
+.card{
     background:#140022;
     border:1px solid #7a2cff;
-    box-shadow:0 0 25px #3a0070;
-    margin-bottom:20px;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 0 15px #3a0070;
 }
 
-/* Card Full Soft */
-.card.full.soft{
+.card.big{
     grid-column:1/-1;
-    padding:40px 20px;
-    text-align:center;
+    font-size:1.3em;
+    background:rgba(122,44,255,0.12);
+}
+
+/* الترحيب */
+.welcome{
+    grid-column:1/-1;
+    padding:45px 20px;
     border-radius:25px;
+    background:rgba(122,44,255,0.15);
+    text-align:center;
+    box-shadow:0 0 30px rgba(122,44,255,0.4);
+}
+
+/* القائمة */
+#menu{
+    display:none;
+    flex-direction:column;
+    gap:10px;
+    margin:20px 0;
+}
+#menu button{
+    padding:12px;
+    border:none;
+    border-radius:15px;
+    background:#7a2cff;
+    color:#fff;
+    cursor:pointer;
+}
+
+/* اللغة */
+.word{font-size:1.2em}
+.pron{color:#caa6ff;font-size:.9em}
+.meaning{opacity:.85;font-size:.9em}
+</style>
+</head>
+
+<body>
+
+<div id="login">
+    <button onclick="enterSite()">تسجيل دخول</button>
+</div>
+
+<header id="header">
+    <button onclick="toggleMenu()">≡</button>
+</header>
+
+<div id="content">
+
+<div class="cards" id="welcome">
+    <div class="welcome">
+        ☠ أهلاً بك في عالم المافيا الروسية  
+        <br>اضغط ≡ لاختيار القسم
+    </div>
+</div>
+
+<div id="menu">
+    <button onclick="show('laws')">☠ القوانين</button>
+    <button onclick="show('weapons')">☠ الأسلحة</button>
+    <button onclick="show('gangs')">☠ العصابات</button>
+    <button onclick="show('leaders')">☠ المسؤولين</button>
+    <button onclick="show('members')">☠ الأعضاء</button>
+    <button onclick="show('language')">☠ تعليم اللغة</button>
+    <button onclick="backHome()">⬅ الرجوع</button>
+</div>
+
+<div class="cards" id="cards" style="display:none">
+
+<!-- القوانين -->
+<div class="card big" data-type="laws">📜 قوانين المافيا</div>
+<div class="card" data-type="laws">تنفيذ الأوامر بدون نقاش</div>
+<div class="card" data-type="laws">ممنوع التصرف بدون أمر</div>
+<div class="card" data-type="laws">الاحترام واجب</div>
+
+<!-- الأسلحة -->
+<div class="card big" data-type="weapons">🔫 الأسلحة</div>
+<div class="card" data-type="weapons">AK-47</div>
+<div class="card" data-type="weapons">Deagle</div>
+<div class="card" data-type="weapons">Glock 20</div>
+
+<!-- العصابات -->
+<div class="card big" data-type="gangs">🤝 العصابات</div>
+<div class="card" data-type="gangs">سكراب</div>
+<div class="card" data-type="gangs">لا يوجد</div>
+
+<!-- المسؤولين -->
+<div class="card big" data-type="leaders">👑 المسؤولين</div>
+<div class="card" data-type="leaders">المسؤول مجهول الهوية</div>
+<div class="card" data-type="leaders">نائب المسؤول مجهول الهوية</div>
+
+<!-- الأعضاء -->
+<div class="card big" data-type="members">🧑‍🤝‍🧑 الأعضاء</div>
+<div class="card" data-type="members">فيكتور ماكسيم</div>
+<div class="card" data-type="members">اليكس ماكسيم</div>
+<div class="card" data-type="members">بيتر ماكسيم</div>
+<div class="card" data-type="members">سكاي ماكسيم</div>
+
+<!-- اللغة -->
+<div class="card big" data-type="language">🇷🇺 تعليم اللغة</div>
+<div class="card" data-type="language">
+    <div class="word">Здравствуйте</div>
+    <div class="pron">زدرستفويتي</div>
+    <div class="meaning">مرحبا</div>
+</div>
+
+</div>
+</div>
+
+<script>
+function enterSite(){
+    login.style.display="none";
+    content.style.display="block";
+    header.style.display="block";
+}
+
+function toggleMenu(){
+    menu.style.display = menu.style.display==="flex" ? "none" : "flex";
+}
+
+function show(type){
+    welcome.style.display="none";
+    cards.style.display="grid";
+    document.querySelectorAll("#cards .card").forEach(c=>{
+        c.style.display = c.dataset.type===type ? "block" : "none";
+    });
+}
+
+function backHome(){
+    cards.style.display="none";
+    welcome.style.display="grid";
+    menu.style.display="none";
+}
+</script>
+
+</body>
+</html>    border-radius:25px;
     background:rgba(122,44,255,0.10);
     box-shadow:0 0 25px rgba(122,44,255,0.35);
     margin-bottom:20px;
