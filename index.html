@@ -13,167 +13,182 @@ body {
     color: #e0d9ff;
 }
 
-header {
-    background: linear-gradient(90deg, #2b004f, #140021);
-    padding: 25px;
-    text-align: center;
-    font-size: 2em;
-    font-weight: bold;
+/* شاشة الترحيب */
+#welcome {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, #2b004f, #000);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#welcome h1 {
     color: #fff;
+    margin-bottom: 15px;
 }
 
-.container {
-    padding: 15px;
+#welcome button {
+    background: #5e17eb;
+    border: none;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    cursor: pointer;
 }
 
-.card {
+/* الهيدر */
+header {
     background: #140021;
-    border: 1px solid #5e17eb;
-    border-radius: 15px;
     padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 15px rgba(94,23,235,0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.card h2 {
-    margin-top: 0;
+.menu-btn {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+/* القائمة */
+#menu {
+    position: fixed;
+    top: 0;
+    right: -260px;
+    width: 250px;
+    height: 100%;
+    background: #140021;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+#menu a {
+    display: block;
+    padding: 15px;
     color: #b388ff;
+    text-decoration: none;
     border-bottom: 1px solid #5e17eb;
-    padding-bottom: 8px;
 }
 
-.card p {
-    line-height: 1.7;
-    font-size: 0.95em;
+#menu a:hover {
+    background: #2b004f;
 }
 
-.lang-table {
+/* المحتوى */
+.section {
+    padding: 20px;
+    display: none;
+}
+
+.section h2 {
+    color: #b388ff;
+}
+
+/* جدول اللغة */
+table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
 }
 
-.lang-table th, .lang-table td {
+th, td {
     border: 1px solid #5e17eb;
     padding: 8px;
     text-align: center;
 }
 
-.lang-table th {
+th {
     background: #2b004f;
 }
 
-button {
+button.sound {
     background: #5e17eb;
     border: none;
     color: #fff;
-    padding: 5px 10px;
+    padding: 5px 8px;
     border-radius: 6px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #7b3cff;
 }
 </style>
 </head>
 
 <body>
 
-<header>🏴‍☠️ MafiaRussian</header>
-
-<div class="container">
-
-<!-- موقع المافيا -->
-<div class="card">
-<h2>🏙️ موقع المافيا</h2>
-<p>
-موقع المافيا يكون غالبًا في أماكن سرية داخل المدينة،  
-مثل المستودعات، النوادي الليلية، أو مباني مهجورة.  
-لا أحد يدخل إلا بإذن من المسؤولين.
-</p>
+<!-- ترحيب -->
+<div id="welcome">
+    <h1>🏴‍☠️ Welcome to MafiaRussian</h1>
+    <p>اضغط للدخول</p>
+    <button onclick="enterSite()">دخول</button>
 </div>
 
-<!-- أسلحة المافيا -->
-<div class="card">
+<!-- القائمة -->
+<div id="menu">
+    <a onclick="show('weapons')">🔫 أسلحة المافيا</a>
+    <a onclick="show('plans')">🧠 خطط المافيا</a>
+    <a onclick="show('leaders')">👑 مسؤولين المافيا</a>
+    <a onclick="show('language')">🗣️ تعليم اللغة</a>
+</div>
+
+<!-- الهيدر -->
+<header>
+    <div>MafiaRussian</div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</header>
+
+<!-- الأقسام -->
+<div id="weapons" class="section">
 <h2>🔫 أسلحة المافيا</h2>
-<p>
-• مسدسات خفيفة للمهام السريعة  
-<br>• رشاشات للسيطرة  
-<br>• أسلحة مخفية للحالات الطارئة  
-<br>• ممنوع استخدام السلاح بدون أمر
-</p>
+<p>مسدسات – رشاشات – أسلحة مخفية – استخدام بأمر فقط</p>
 </div>
 
-<!-- خطط المافيا -->
-<div class="card">
+<div id="plans" class="section">
 <h2>🧠 خطط المافيا</h2>
-<p>
-• مراقبة الهدف  
-<br>• تحديد وقت التنفيذ  
-<br>• توزيع الأدوار  
-<br>• انسحاب منظم بدون فوضى  
-<br><b>الهدوء أهم من القوة</b>
-</p>
+<p>مراقبة – توزيع أدوار – تنفيذ – انسحاب هادئ</p>
 </div>
 
-<!-- مسؤولين المافيا -->
-<div class="card">
+<div id="leaders" class="section">
 <h2>👑 مسؤولين المافيا</h2>
-<p>
-<b>Boss:</b> القائد الأعلى  
-<br><b>Underboss:</b> نائب القائد  
-<br><b>Capo:</b> مسؤول مجموعة  
-<br><b>Soldier:</b> منفذ الأوامر
-</p>
+<p>Boss – Underboss – Capo – Soldier</p>
 </div>
 
-<!-- تعليم اللغة -->
-<div class="card">
-<h2>🗣️ تعليم اللغة (Russian RP)</h2>
-
-<table class="lang-table">
-<tr>
-<th>روسي</th>
-<th>النطق</th>
-<th>المعنى</th>
-<th>🔊</th>
-</tr>
-
+<div id="language" class="section">
+<h2>🗣️ تعليم اللغة</h2>
+<table>
+<tr><th>روسي</th><th>النطق</th><th>المعنى</th><th>🔊</th></tr>
 <tr>
 <td>Здравствуйте</td>
 <td>زدرستفويتِه</td>
 <td>سلام عليكم</td>
-<td><button onclick="speak('Здравствуйте')">🔊</button></td>
+<td><button class="sound" onclick="speak('Здравствуйте')">🔊</button></td>
 </tr>
-
 <tr>
 <td>Готовы</td>
 <td>غوتوفي</td>
 <td>استعدوا</td>
-<td><button onclick="speak('Готовы')">🔊</button></td>
+<td><button class="sound" onclick="speak('Готовы')">🔊</button></td>
 </tr>
-
-<tr>
-<td>Спокойно</td>
-<td>سبوكوينا</td>
-<td>بهدوء</td>
-<td><button onclick="speak('Спокойно')">🔊</button></td>
-</tr>
-
-<tr>
-<td>Босс</td>
-<td>بوس</td>
-<td>الزعيم</td>
-<td><button onclick="speak('Босс')">🔊</button></td>
-</tr>
-
 </table>
 </div>
 
-</div>
-
 <script>
+function enterSite(){
+    document.getElementById('welcome').style.display = 'none';
+    show('weapons');
+}
+
+function toggleMenu(){
+    let m = document.getElementById('menu');
+    m.style.right = (m.style.right === '0px') ? '-260px' : '0px';
+}
+
+function show(id){
+    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    document.getElementById('menu').style.right = '-260px';
+}
+
 function speak(text){
     let u = new SpeechSynthesisUtterance(text);
     u.lang = 'ru-RU';
