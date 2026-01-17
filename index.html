@@ -13,7 +13,7 @@ body{
     color:#eee;
 }
 
-/* تسجيل الدخول */
+/* شاشة تسجيل الدخول */
 #login{
     position:fixed;
     inset:0;
@@ -22,15 +22,44 @@ body{
     justify-content:center;
     align-items:center;
     z-index:9999;
+    animation:fadeIn .8s;
 }
-#login button{
-    padding:16px 45px;
-    font-size:1.2em;
+.login-box{
+    background:#140022;
+    border:1px solid #7a2cff;
+    border-radius:20px;
+    padding:30px;
+    width:280px;
+    text-align:center;
+    box-shadow:0 0 25px #3a0070;
+    animation:scaleIn .6s;
+}
+.login-box h2{
+    margin-bottom:20px;
+}
+.login-box input{
+    width:100%;
+    margin:8px 0;
+    padding:10px;
+    border-radius:12px;
+    border:none;
+    outline:none;
+}
+.login-box button{
+    margin-top:12px;
+    padding:12px;
+    width:100%;
+    border:none;
+    border-radius:15px;
     background:#7a2cff;
     color:#fff;
-    border:none;
-    border-radius:22px;
     cursor:pointer;
+}
+#error{
+    color:#ff5c5c;
+    font-size:.9em;
+    margin-top:8px;
+    display:none;
 }
 
 /* زر الشخطات */
@@ -51,41 +80,6 @@ header button{
     cursor:pointer;
 }
 
-/* المحتوى */
-#content{
-    display:none;
-    padding:100px 15px 30px;
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-    gap:15px;
-}
-
-/* Card عام */
-.card{
-    background:#140022;
-    border:1px solid #7a2cff;
-    border-radius:18px;
-    padding:20px;
-    text-align:center;
-    box-shadow:0 0 15px #3a0070;
-    display:none;
-}
-
-/* Card كبير */
-.big{
-    grid-column:1/-1;
-    font-size:1.1em;
-}
-
-/* ترحيب */
-.welcome{
-    background:rgba(122,44,255,0.12);
-    box-shadow:0 0 25px rgba(122,44,255,.4);
-}
-
 /* القائمة */
 #menu{
     display:none;
@@ -96,7 +90,6 @@ header button{
     padding:12px;
     border-radius:15px;
     box-shadow:0 0 20px #3a0070;
-    z-index:998;
 }
 #menu button{
     display:block;
@@ -106,6 +99,128 @@ header button{
     border:none;
     border-radius:12px;
     background:#7a2cff;
+    color:#fff;
+    cursor:pointer;
+}
+
+/* المحتوى */
+#content{
+    display:none;
+    padding:100px 15px;
+}
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:15px;
+}
+.card{
+    background:#140022;
+    border:1px solid #7a2cff;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 0 15px #3a0070;
+    display:none;
+}
+.big{
+    grid-column:1/-1;
+}
+.welcome{
+    background:rgba(122,44,255,.12);
+}
+
+/* أنيميشن */
+@keyframes fadeIn{
+    from{opacity:0}
+    to{opacity:1}
+}
+@keyframes scaleIn{
+    from{transform:scale(.8)}
+    to{transform:scale(1)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- تسجيل دخول -->
+<div id="login">
+    <div class="login-box">
+        <h2>☠ تسجيل الدخول</h2>
+        <input type="text" id="username" placeholder="الاسم">
+        <input type="password" id="password" placeholder="الرمز">
+        <button onclick="login()">دخول</button>
+        <div id="error">الاسم أو الرمز غير صحيح</div>
+    </div>
+</div>
+
+<!-- زر الشخطات -->
+<header id="header">
+    <button onclick="toggleMenu()">≡</button>
+</header>
+
+<!-- القائمة -->
+<div id="menu">
+    <button onclick="showSection('welcome')">☠ الترحيب</button>
+    <button onclick="showSection('laws')">☠ القوانين</button>
+    <button onclick="showSection('weapons')">☠ الأسلحة</button>
+    <button onclick="showSection('leaders')">☠ المسؤولين</button>
+</div>
+
+<!-- المحتوى -->
+<div id="content">
+<div class="cards">
+
+<div class="card big welcome" data-type="welcome">
+☠ أهلاً بك بيتر ماكسيم<br>في عالم المافيا الروسية
+</div>
+
+<div class="card big" data-type="laws">☠ قوانين المافيا</div>
+<div class="card" data-type="laws">☠ تنفيذ الأوامر بدون نقاش</div>
+
+<div class="card big" data-type="weapons">☠ الأسلحة</div>
+<div class="card" data-type="weapons">☠ AK-47</div>
+<div class="card" data-type="weapons">☠ Deagle</div>
+
+<div class="card big" data-type="leaders">☠ المسؤولين</div>
+<div class="card" data-type="leaders">☠ بيتر ماكسيم</div>
+
+</div>
+</div>
+
+<script>
+// بيانات الدخول
+const USERNAME = "بيتر ماكسيم";
+const PASSWORD = "2008";
+
+function login(){
+    const u = document.getElementById("username").value.trim();
+    const p = document.getElementById("password").value.trim();
+    if(u === USERNAME && p === PASSWORD){
+        document.getElementById("login").style.display="none";
+        document.getElementById("content").style.display="block";
+        document.getElementById("header").style.display="block";
+        showSection('welcome');
+    }else{
+        document.getElementById("error").style.display="block";
+    }
+}
+
+function toggleMenu(){
+    const m = document.getElementById("menu");
+    m.style.display = m.style.display==="block" ? "none" : "block";
+}
+
+function showSection(type){
+    document.querySelectorAll(".card").forEach(c=>{
+        c.style.display = (c.dataset.type===type) ? "block" : "none";
+    });
+    document.getElementById("menu").style.display="none";
+}
+</script>
+
+</body>
+</html>    background:#7a2cff;
     color:#fff;
     cursor:pointer;
 }
