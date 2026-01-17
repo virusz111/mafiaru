@@ -2,110 +2,148 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MafiaRussian</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
     margin:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial;
     background:#0a0a0a;
     color:#eee;
 }
 
-/* شاشة ترحيب */
-.overlay{
+/* شاشة الدخول */
+.login-screen{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.9);
     display:flex;
-    flex-direction:column;
     justify-content:center;
     align-items:center;
-    z-index:999;
+    background:#0a0a0a;
+    z-index:10;
 }
-.overlay button{
-    margin-top:15px;
-    padding:10px 25px;
+.login-screen button{
+    padding:15px 35px;
+    font-size:1.2em;
     background:#7a2cff;
-    border:none;
-    border-radius:12px;
     color:white;
-    font-size:1em;
+    border:none;
+    border-radius:20px;
+    box-shadow:0 0 20px #3a0070;
 }
 
-/* هيدر */
-header{
-    background:#12001f;
-    padding:15px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-header button{
-    background:#7a2cff;
-    border:none;
-    color:white;
-    padding:8px 15px;
-    border-radius:10px;
-}
-
-/* الأقسام */
+/* المحتوى */
 .container{
     padding:20px;
+    display:none;
 }
-h2{color:#c9a6ff}
 
-/* Cards */
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-    gap:15px;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:18px;
 }
+
 .card{
     background:#140022;
     border:1px solid #7a2cff;
-    border-radius:18px;
+    border-radius:20px;
     padding:20px;
     text-align:center;
-    box-shadow:0 0 15px #3a0070;
+    box-shadow:0 0 20px #3a0070;
 }
-.card .icon{
-    font-size:2.5em;
+
+.card.big{
+    grid-column:1/-1;
+    cursor:pointer;
+}
+
+.icon{
+    font-size:2.8em;
     margin-bottom:10px;
+}
+.title{
+    color:#c9a6ff;
+    margin-bottom:10px;
+    font-size:1.2em;
+}
+.small{
+    font-size:.9em;
+    opacity:.85;
+}
+
+/* باقي الأقسام */
+#otherCards{
+    display:none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ترحيب أول -->
-<div id="welcome1" class="overlay">
-    <h1>🖤 MafiaRussian</h1>
-    <p>مرحباً بك</p>
-    <button onclick="enterSite()">دخول</button>
+<!-- تسجيل الدخول -->
+<div class="login-screen" id="login">
+    <button onclick="enter()">تسجيل دخول</button>
 </div>
 
-<!-- ترحيب ثاني -->
-<div id="welcome2" class="overlay" style="display:none">
-    <h2>👋 أهلاً بك في عالم المافيا</h2>
-    <p>نتمنى لك تجربة ممتعة</p>
-    <button onclick="closeWelcome2()">متابعة</button>
-</div>
-
-<header>
-    <div>MafiaRussian</div>
-    <button onclick="login()">تسجيل دخول</button>
-</header>
-
-<div class="container">
-
-<h2>🔫 أسلحة المافيا</h2>
+<div class="container" id="content">
 <div class="cards">
-    <div class="card"><div class="icon"></div>AK-47</div>
-    <div class="card"><div class="icon"></div>Deagle</div>
-    <div class="card"><div class="icon"></div>C4</div>
-    <div class="card"><div class="icon"></div>Glock 20</div>
+
+<!-- الترحيب -->
+<div class="card big" onclick="showOthers()">
+    <div class="icon">🖤</div>
+    <div class="title">MafiaRussian</div>
+    مرحباً بك في عالم المافيا<br>
+    اضغط هنا للمتابعة
+</div>
+
+<!-- باقي المربعات -->
+<div id="otherCards" class="cards">
+
+    <div class="card">
+        <div class="icon">🔫</div>
+        <div class="title">أسلحة المافيا</div>
+        AK-47<br>Deagle<br>Glock 20<br>Pistol .50<br>C4
+    </div>
+
+    <div class="card">
+        <div class="icon">🧠</div>
+        <div class="title">خطط المافيا</div>
+        مراقبة<br>تحديد هدف<br>تنفيذ
+    </div>
+
+    <div class="card">
+        <div class="icon">👑</div>
+        <div class="title">مسؤولين المافيا</div>
+        Boss<br>Capo
+    </div>
+
+    <div class="card">
+        <div class="icon">🗣️</div>
+        <div class="title">تعليم اللغة</div>
+        Здравствуйте<br><span class="small">مرحبا</span><br><br>
+        Готовы<br><span class="small">استعدوا</span>
+    </div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+function enter(){
+    document.getElementById("login").style.display="none";
+    document.getElementById("content").style.display="block";
+}
+
+function showOthers(){
+    document.getElementById("otherCards").style.display="grid";
+}
+</script>
+
+</body>
+</html    <div class="card"><div class="icon"></div>Glock 20</div>
     <div class="card"><div class="icon"></div>Pistol .50</div>
 </div>
 
