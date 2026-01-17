@@ -42,14 +42,14 @@ body{
 /* Cards */
 .cards{
     display:grid;
-    gap:18px;
-    grid-template-columns:1fr;
+    gap:15px;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
 }
 
 .card{
     background:#140022;
     border:1px solid #7a2cff;
-    border-radius:20px;
+    border-radius:18px;
     padding:20px;
     text-align:center;
     box-shadow:0 0 20px #3a0070;
@@ -57,21 +57,20 @@ body{
 }
 
 .card.big{
-    font-size:1.2em;
+    grid-column:1/-1;
 }
 
 .icon{
-    font-size:2.8em;
+    font-size:2.5em;
     margin-bottom:10px;
 }
 
 .button-row{
     display:none;
-    margin-top:15px;
-    display:grid;
     gap:10px;
+    margin-top:15px;
+    grid-template-columns:1fr;
 }
-
 .button-row button{
     padding:10px;
     border:none;
@@ -90,22 +89,82 @@ body{
     <button onclick="enter()">تسجيل دخول</button>
 </div>
 
-<!-- المحتوى -->
 <div class="container" id="content">
 <div class="cards">
 
 <!-- الترحيب -->
 <div class="card big">
     <div class="icon">🖤</div>
-    مرحباً بك في عالم MafiaRussian<br><br>
-    <button onclick="toggleMenu()" style="padding:8px 15px; border:none; border-radius:12px; background:#7a2cff; color:white; cursor:pointer;">≡ القائمة</button>
-
-    <!-- أزرار بعد الضغط على الخطاط -->
+    أهلاً بك في عالم MafiaRussian<br><br>
+    <button onclick="toggleMenu()" style="padding:8px 15px; border:none; border-radius:12px; background:#7a2cff; color:white; cursor:pointer;">≡</button>
+    
+    <!-- الأزرار تظهر بعد الضغط على ≡ -->
     <div class="button-row" id="menuButtons">
-        <button onclick="alert('القوانين')">📜 القوانين</button>
-        <button onclick="alert('الأسلحة')">🔫 الأسلحة</button>
-        <button onclick="alert('العصابات')">🕵️ العصابات</button>
-        <button onclick="alert('المسؤولين')">👑 المسؤولين</button>
+        <button onclick="showCards('laws')">📜 القوانين</button>
+        <button onclick="showCards('weapons')">🔫 الأسلحة</button>
+        <button onclick="showCards('gangs')">🕵️ العصابات</button>
+        <button onclick="showCards('leaders')">👑 المسؤولين</button>
+        <button onclick="showCards('language')">🗣️ تعليم اللغة</button>
+    </div>
+</div>
+
+<!-- Cards لكل شيء -->
+<div class="cards" id="allCards" style="display:none;">
+
+<!-- القوانين -->
+<div class="card" data-group="laws">
+    <div class="icon">📜</div>قوانين المافيا
+</div>
+
+<!-- الأسلحة -->
+<div class="card" data-group="weapons"><div class="icon">🔫</div>AK-47</div>
+<div class="card" data-group="weapons"><div class="icon">🔫</div>Deagle</div>
+<div class="card" data-group="weapons"><div class="icon">💣</div>C4</div>
+<div class="card" data-group="weapons"><div class="icon">🔫</div>Glock 20</div>
+<div class="card" data-group="weapons"><div class="icon">🔫</div>Pistol .50</div>
+
+<!-- العصابات -->
+<div class="card" data-group="gangs"><div class="icon">🕵️</div>سكراب</div>
+<div class="card" data-group="gangs"><div class="icon">🕵️</div>عصابة ثانية</div>
+
+<!-- المسؤولين -->
+<div class="card" data-group="leaders"><div class="icon">👑</div>Boss</div>
+<div class="card" data-group="leaders"><div class="icon">🎩</div>Capo</div>
+
+<!-- تعليم اللغة -->
+<div class="card" data-group="language"><div class="icon">🇷🇺</div>Здравствуйте<br><span style="font-size:.9em;opacity:.85">مرحبا</span></div>
+<div class="card" data-group="language"><div class="icon">🇷🇺</div>Готовы<br><span style="font-size:.9em;opacity:.85">استعدوا</span></div>
+
+</div>
+</div>
+
+<script>
+function enter(){
+    document.getElementById("login").style.display="none";
+    document.getElementById("content").style.display="block";
+}
+
+function toggleMenu(){
+    let menu = document.getElementById("menuButtons");
+    menu.style.display = menu.style.display==="grid"?"none":"grid";
+}
+
+function showCards(group){
+    // إظهار كل Cards
+    document.getElementById("allCards").style.display="grid";
+    // أخفي الباقي
+    document.querySelectorAll('#allCards .card').forEach(c=>{
+        if(c.getAttribute('data-group')===group){
+            c.style.display='block';
+        }else{
+            c.style.display='none';
+        }
+    });
+}
+</script>
+
+</body>
+</html>        <button onclick="alert('المسؤولين')">👑 المسؤولين</button>
     </div>
 </div>
 
