@@ -3,93 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mafia Language</title>
+<title>MafiaRussian</title>
+
 <style>
-    body {
-        background-color: #0e0e0e;
-        color: #FFFFFF;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-    header {
-        background-color: #5F009E;
-        padding: 20px;
-        text-align: center;
-        font-size: 1.8em;
-        font-weight: bold;
-        color: #ffffff;
-    }
-    .container {
-        max-width: 100%;
-        margin: 10px auto;
-        padding: 10px;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-        font-size: 1em;
-    }
-    th, td {
-        border: 1px solid #424242;
-        padding: 8px;
-        text-align: center;
-    }
-    th {
-        background-color: #3b0070;
-        color: #ffffff;
-    }
-    button {
-        background-color: #5F009E;
-        color: white;
-        border: none;
-        padding: 5px 8px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 0.9em;
-    }
-    button:hover {
-        background-color: #5F009E;
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: #e0d9ff;
+}
+
+header {
+    background: linear-gradient(90deg, #2b004f, #140021);
+    padding: 25px;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.container {
+    padding: 15px;
+}
+
+.card {
+    background: #140021;
+    border: 1px solid #5e17eb;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(94,23,235,0.3);
+}
+
+.card h2 {
+    margin-top: 0;
+    color: #b388ff;
+    border-bottom: 1px solid #5e17eb;
+    padding-bottom: 8px;
+}
+
+.card p {
+    line-height: 1.7;
+    font-size: 0.95em;
+}
+
+.lang-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.lang-table th, .lang-table td {
+    border: 1px solid #5e17eb;
+    padding: 8px;
+    text-align: center;
+}
+
+.lang-table th {
+    background: #2b004f;
+}
+
+button {
+    background: #5e17eb;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #7b3cff;
+}
 </style>
 </head>
+
 <body>
-<header>Mafia Language</header>
+
+<header>🏴‍☠️ MafiaRussian</header>
+
 <div class="container">
-<table>
-<tr><th>الكلمة الروسية</th><th>النطق بالعربي</th><th>المعنى بالعربي</th><th>استكشف</th></tr>
-<tr><td>Здравствуйте</td><td>زدرستفويتِه</td><td>سلام عليكم</td><td><button onclick="speak('Здравствуйте')">استكشف</button></td></tr>
-<tr><td>Привет</td><td>بريفِت</td><td>هلا</td><td><button onclick="speak('Привет')">استكشف</button></td></tr>
-<tr><td>Хорошо</td><td>خراشو</td><td>تمام</td><td><button onclick="speak('Хорошо')">استكشف</button></td></tr>
-<tr><td>Спасибо</td><td>سباسيبا</td><td>شكراً</td><td><button onclick="speak('Спасибо')">استكشف</button></td></tr>
-<tr><td>Нет</td><td>نيت</td><td>لا</td><td><button onclick="speak('Нет')">استكشف</button></td></tr>
-<tr><td>Да</td><td>دا</td><td>نعم</td><td><button onclick="speak('Да')">استكشف</button></td></tr>
-<tr><td>Не понимаю</td><td>ني بانيمايو</td><td>ما أفهم</td><td><button onclick="speak('Не понимаю')">استكشف</button></td></tr>
-<tr><td>Стоп</td><td>ستوب</td><td>قف</td><td><button onclick="speak('Стоп')">استكشف</button></td></tr>
-<tr><td>Спокойно</td><td>سبوكوينا</td><td>بهدوء</td><td><button onclick="speak('Спокойно')">استكشف</button></td></tr>
-<tr><td>Готов</td><td>غوتوف</td><td>جاهز</td><td><button onclick="speak('Готов')">استكشف</button></td></tr>
-<tr><td>Готовы</td><td>غوتوفي</td><td>جاهزين</td><td><button onclick="speak('Готовы')">استكشف</button></td></tr>
-<tr><td>Пожалуйста</td><td>باجالستا</td><td>تفضل / لو سمحت</td><td><button onclick="speak('Пожалуйста')">استكشف</button></td></tr>
-<tr><td>Пока</td><td>باكا</td><td>مع السلامة</td><td><button onclick="speak('Пока')">استكشف</button></td></tr>
-<tr><td>Босс</td><td>بوس</td><td>الرئيس / الزعيم</td><td><button onclick="speak('Босс')">استكشف</button></td></tr>
-<tr><td>Парни</td><td>بارني</td><td>الشباب / الرجال</td><td><button onclick="speak('Парни')">استكشف</button></td></tr>
-<tr><td>Деньги</td><td>دينجي</td><td>فلوس</td><td><button onclick="speak('Деньги')">استكشف</button></td></tr>
-<tr><td>Сделка</td><td>سديليكا</td><td>صفقة</td><td><button onclick="speak('Сделка')">استكشف</button></td></tr>
-<tr><td>Враг</td><td>فراغ</td><td>عدو</td><td><button onclick="speak('Враг')">استكشف</button></td></tr>
-<tr><td>Тайное</td><td>تاينو</td><td>سري / مخفي</td><td><button onclick="speak('Тайное')">استكشف</button></td></tr>
-<tr><td>Город</td><td>غورود</td><td>المدينة</td><td><button onclick="speak('Город')">استكشف</button></td></tr>
-<tr><td>Прятаться</td><td>برياتاتسا</td><td>اختبئ</td><td><button onclick="speak('Прятаться')">استكشف</button></td></tr>
-<tr><td>Удар</td><td>أودار</td><td>ضربة / هجوم</td><td><button onclick="speak('Удар')">استكشف</button></td></tr>
-<tr><td>Оружие</td><td>أوروغيي</td><td>سلاح</td><td><button onclick="speak('Оружие')">استكشف</button></td></tr>
+
+<!-- موقع المافيا -->
+<div class="card">
+<h2>🏙️ موقع المافيا</h2>
+<p>
+موقع المافيا يكون غالبًا في أماكن سرية داخل المدينة،  
+مثل المستودعات، النوادي الليلية، أو مباني مهجورة.  
+لا أحد يدخل إلا بإذن من المسؤولين.
+</p>
+</div>
+
+<!-- أسلحة المافيا -->
+<div class="card">
+<h2>🔫 أسلحة المافيا</h2>
+<p>
+• مسدسات خفيفة للمهام السريعة  
+<br>• رشاشات للسيطرة  
+<br>• أسلحة مخفية للحالات الطارئة  
+<br>• ممنوع استخدام السلاح بدون أمر
+</p>
+</div>
+
+<!-- خطط المافيا -->
+<div class="card">
+<h2>🧠 خطط المافيا</h2>
+<p>
+• مراقبة الهدف  
+<br>• تحديد وقت التنفيذ  
+<br>• توزيع الأدوار  
+<br>• انسحاب منظم بدون فوضى  
+<br><b>الهدوء أهم من القوة</b>
+</p>
+</div>
+
+<!-- مسؤولين المافيا -->
+<div class="card">
+<h2>👑 مسؤولين المافيا</h2>
+<p>
+<b>Boss:</b> القائد الأعلى  
+<br><b>Underboss:</b> نائب القائد  
+<br><b>Capo:</b> مسؤول مجموعة  
+<br><b>Soldier:</b> منفذ الأوامر
+</p>
+</div>
+
+<!-- تعليم اللغة -->
+<div class="card">
+<h2>🗣️ تعليم اللغة (Russian RP)</h2>
+
+<table class="lang-table">
+<tr>
+<th>روسي</th>
+<th>النطق</th>
+<th>المعنى</th>
+<th>🔊</th>
+</tr>
+
+<tr>
+<td>Здравствуйте</td>
+<td>زدرستفويتِه</td>
+<td>سلام عليكم</td>
+<td><button onclick="speak('Здравствуйте')">🔊</button></td>
+</tr>
+
+<tr>
+<td>Готовы</td>
+<td>غوتوفي</td>
+<td>استعدوا</td>
+<td><button onclick="speak('Готовы')">🔊</button></td>
+</tr>
+
+<tr>
+<td>Спокойно</td>
+<td>سبوكوينا</td>
+<td>بهدوء</td>
+<td><button onclick="speak('Спокойно')">🔊</button></td>
+</tr>
+
+<tr>
+<td>Босс</td>
+<td>بوس</td>
+<td>الزعيم</td>
+<td><button onclick="speak('Босс')">🔊</button></td>
+</tr>
+
 </table>
 </div>
+
+</div>
+
 <script>
-function speak(text) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'ru-RU';
-    window.speechSynthesis.speak(utterance);
+function speak(text){
+    let u = new SpeechSynthesisUtterance(text);
+    u.lang = 'ru-RU';
+    speechSynthesis.speak(u);
 }
 </script>
+
 </body>
 </html>
