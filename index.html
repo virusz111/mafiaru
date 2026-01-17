@@ -154,7 +154,8 @@ header button{
     <button onclick="showSection('welcome')">☠ الترحيب</button>
     <button onclick="showSection('laws')">☠ القوانين</button>
     <button onclick="showSection('weapons')">☠ الأسلحة</button>
-    <button onclick="showSection('leaders')">☠ المسؤولين</button>
+    <button onclick="showSection('leaders')">☠ المسؤولين و الاعضاء</button>
+    <button onclick="showSection('gangs')">☠ العصابات</button>
 </div>
 
 <!-- المحتوى -->
@@ -175,6 +176,9 @@ header button{
 <div class="card big" data-type="leaders">☠ المسؤولين</div>
 <div class="card" data-type="leaders">☠ بيتر ماكسيم</div>
 
+<div class="card big" data-type="gangs">☠ العصابات</div>
+<div class="card" data-type="gangs">☠ السكراب</div>
+
 </div>
 </div>
 
@@ -183,6 +187,9 @@ header button{
 const USERNAME = "بيتر ماكسيم";
 const PASSWORD = "2008";
 
+const USERNAME = "اليكس ماكسيم";
+const PASSWORD = "ba95ba";
+    
 function login(){
     const u = document.getElementById("username").value.trim();
     const p = document.getElementById("password").value.trim();
