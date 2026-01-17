@@ -12,7 +12,7 @@ body{
     color:#eee;
 }
 
-/* شاشة تسجيل الدخول */
+/* زر تسجيل الدخول */
 .login-screen{
     position:fixed;
     inset:0;
@@ -33,23 +33,46 @@ body{
     cursor:pointer;
 }
 
+/* الهيدر / ثلث شخطات */
+header{
+    display:none; /* يظهر بعد الدخول */
+    background:#12001f;
+    padding:15px;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:5;
+}
+header button{
+    background:#7a2cff;
+    border:none;
+    color:white;
+    font-size:1.5em;
+    padding:5px 12px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
 /* container */
 .container{
+    padding:80px 20px 20px 20px; /* مسافة فوق للهيدر */
     display:none;
-    padding:20px;
 }
 
 /* Cards */
 .cards{
     display:grid;
-    gap:18px;
-    grid-template-columns:1fr;
+    gap:15px;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
 }
 
 .card{
     background:#140022;
     border:1px solid #7a2cff;
-    border-radius:20px;
+    border-radius:18px;
     padding:20px;
     text-align:center;
     box-shadow:0 0 20px #3a0070;
@@ -57,22 +80,22 @@ body{
 }
 
 .card.big{
-    font-size:1.2em;
+    grid-column:1/-1;
 }
 
 .icon{
-    font-size:2.8em;
+    font-size:2.5em;
     margin-bottom:10px;
 }
 
-.button-row{
+/* قائمة الأزرار عند الضغط على Hamburger */
+.menuButtons{
     display:none;
-    margin-top:15px;
-    display:grid;
+    flex-direction:column;
     gap:10px;
+    margin-top:10px;
 }
-
-.button-row button{
+.menuButtons button{
     padding:10px;
     border:none;
     border-radius:15px;
@@ -90,79 +113,82 @@ body{
     <button onclick="enter()">تسجيل دخول</button>
 </div>
 
-<!-- المحتوى -->
+<!-- الهيدر -->
+<header id="header">
+    <button onclick="toggleMenu()">≡</button>
+</header>
+
 <div class="container" id="content">
 <div class="cards">
 
 <!-- الترحيب -->
 <div class="card big">
     <div class="icon">🖤</div>
-    مرحباً بك في عالم MafiaRussian<br><br>
-    <button onclick="toggleMenu()" style="padding:8px 15px; border:none; border-radius:12px; background:#7a2cff; color:white; cursor:pointer;">≡ القائمة</button>
-
-    <!-- أزرار بعد الضغط على الخطاط -->
-    <div class="button-row" id="menuButtons">
-        <button onclick="alert('القوانين')">📜 القوانين</button>
-        <button onclick="alert('الأسلحة')">🔫 الأسلحة</button>
-        <button onclick="alert('العصابات')">🕵️ العصابات</button>
-        <button onclick="alert('المسؤولين')">👑 المسؤولين</button>
-    </div>
+    أهلاً بك في عالم MafiaRussian<br><br>
+    اضغط على الخطاط ≡ أعلاه لرؤية الخيارات
 </div>
 
 </div>
+
+<!-- قائمة الأزرار -->
+<div class="menuButtons" id="menuButtons">
+    <button onclick="showCards('laws')">📜 القوانين</button>
+    <button onclick="showCards('weapons')">🔫 الأسلحة</button>
+    <button onclick="showCards('gangs')">🕵️ العصابات</button>
+    <button onclick="showCards('leaders')">👑 المسؤولين</button>
+    <button onclick="showCards('language')">🗣️ تعليم اللغة</button>
+</div>
+
+<!-- Cards لكل شيء -->
+<div class="cards" id="allCards" style="display:none; margin-top:15px;">
+
+<!-- القوانين -->
+<div class="card" data-group="laws">
+    <div class="icon">📜</div>قوانين المافيا
+</div>
+
+<!-- الأسلحة -->
+<div class="card" data-group="weapons"><div class="icon">🔫</div>AK-47</div>
+<div class="card" data-group="weapons"><div class="icon">🔫</div>Deagle</div>
+<div class="card" data-group="weapons"><div class="icon">💣</div>C4</div>
+<div class="card" data-group="weapons"><div class="icon">🔫</div>Glock 20</div>
+<div class="card" data-group="weapons"><div class="icon">🔫</div>Pistol .50</div>
+
+<!-- العصابات -->
+<div class="card" data-group="gangs"><div class="icon">🕵️</div>سكراب</div>
+<div class="card" data-group="gangs"><div class="icon">🕵️</div>عصابة ثانية</div>
+
+<!-- المسؤولين -->
+<div class="card" data-group="leaders"><div class="icon">👑</div>Boss</div>
+<div class="card" data-group="leaders"><div class="icon">🎩</div>Capo</div>
+
+<!-- تعليم اللغة -->
+<div class="card" data-group="language"><div class="icon">🇷🇺</div>Здравствуйте<br><span style="font-size:.9em;opacity:.85">مرحبا</span></div>
+<div class="card" data-group="language"><div class="icon">🇷🇺</div>Готовы<br><span style="font-size:.9em;opacity:.85">استعدوا</span></div>
+
 </div>
 
 <script>
 function enter(){
     document.getElementById("login").style.display="none";
     document.getElementById("content").style.display="block";
+    document.getElementById("header").style.display="flex";
 }
 
 function toggleMenu(){
     let menu = document.getElementById("menuButtons");
-    if(menu.style.display==="grid"){
-        menu.style.display="none";
-    }else{
-        menu.style.display="grid";
-    }
-}
-</script>
-
-</body>
-</html>    </div>
-
-    <div class="card">
-        <div class="icon">🧠</div>
-        <div class="title">خطط المافيا</div>
-        مراقبة<br>تحديد هدف<br>تنفيذ
-    </div>
-
-    <div class="card">
-        <div class="icon">👑</div>
-        <div class="title">مسؤولين المافيا</div>
-        Boss<br>Capo
-    </div>
-
-    <div class="card">
-        <div class="icon">🗣️</div>
-        <div class="title">تعليم اللغة</div>
-        Здравствуйте<br><span class="small">مرحبا</span><br><br>
-        Готовы<br><span class="small">استعدوا</span>
-    </div>
-
-</div>
-
-</div>
-</div>
-
-<script>
-function enter(){
-    document.getElementById("login").style.display="none";
-    document.getElementById("content").style.display="block";
+    menu.style.display = menu.style.display==="flex"?"none":"flex";
 }
 
-function showOthers(){
-    document.getElementById("otherCards").style.display="grid";
+function showCards(group){
+    document.getElementById("allCards").style.display="grid";
+    document.querySelectorAll('#allCards .card').forEach(c=>{
+        if(c.getAttribute('data-group')===group){
+            c.style.display='block';
+        }else{
+            c.style.display='none';
+        }
+    });
 }
 </script>
 
