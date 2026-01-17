@@ -6,111 +6,88 @@
 <title>MafiaRussian</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0b0b0b;
-    color: #e0d9ff;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0a0a0a;
+    color:#eee;
 }
 
-/* شاشة الترحيب */
-#welcome {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle, #2b004f, #000);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+/* ترحيب */
+#welcome{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#1b0033,#000);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+#welcome h1{margin-bottom:10px}
+#welcome button{
+    background:#7a2cff;
+    border:none;
+    color:#fff;
+    padding:12px 25px;
+    border-radius:12px;
+    font-size:1.1em;
 }
 
-#welcome h1 {
-    color: #fff;
-    margin-bottom: 15px;
+/* هيدر */
+header{
+    background:#12001f;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
-
-#welcome button {
-    background: #5e17eb;
-    border: none;
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 10px;
-    font-size: 1.1em;
-    cursor: pointer;
-}
-
-/* الهيدر */
-header {
-    background: #140021;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.menu-btn {
-    font-size: 1.5em;
-    cursor: pointer;
-}
+.menu-btn{font-size:1.5em;cursor:pointer}
 
 /* القائمة */
-#menu {
-    position: fixed;
-    top: 0;
-    right: -260px;
-    width: 250px;
-    height: 100%;
-    background: #140021;
-    transition: 0.3s;
-    padding-top: 60px;
+#menu{
+    position:fixed;
+    top:0;
+    right:-260px;
+    width:250px;
+    height:100%;
+    background:#12001f;
+    transition:.3s;
+    padding-top:60px;
 }
+#menu a{
+    display:block;
+    padding:15px;
+    color:#c9a6ff;
+    text-decoration:none;
+    border-bottom:1px solid #7a2cff;
+}
+#menu a:hover{background:#2a004a}
 
-#menu a {
-    display: block;
-    padding: 15px;
-    color: #b388ff;
-    text-decoration: none;
-    border-bottom: 1px solid #5e17eb;
-}
+/* الأقسام */
+.section{display:none;padding:20px}
+.section h2{color:#c9a6ff;margin-bottom:15px}
 
-#menu a:hover {
-    background: #2b004f;
+/* الكروت */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:15px;
 }
-
-/* المحتوى */
-.section {
-    padding: 20px;
-    display: none;
+.card{
+    background:#140022;
+    border:1px solid #7a2cff;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 0 15px #3a0070;
 }
-
-.section h2 {
-    color: #b388ff;
+.card .icon{
+    font-size:2.5em;
+    margin-bottom:10px;
 }
-
-/* جدول اللغة */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    border: 1px solid #5e17eb;
-    padding: 8px;
-    text-align: center;
-}
-
-th {
-    background: #2b004f;
-}
-
-button.sound {
-    background: #5e17eb;
-    border: none;
-    color: #fff;
-    padding: 5px 8px;
-    border-radius: 6px;
-}
+.card h3{margin:0;color:#fff}
+.card p{font-size:.9em;color:#c9a6ff}
 </style>
 </head>
 
@@ -118,81 +95,100 @@ button.sound {
 
 <!-- ترحيب -->
 <div id="welcome">
-    <h1>🏴‍☠️ Welcome to MafiaRussian</h1>
-    <p>اضغط للدخول</p>
-    <button onclick="enterSite()">دخول</button>
+    <h1>🖤 MafiaRussian</h1>
+    <p>مرحباً بك في عالم المافيا</p>
+    <button onclick="enter()">دخول</button>
 </div>
 
 <!-- القائمة -->
 <div id="menu">
     <a onclick="show('weapons')">🔫 أسلحة المافيا</a>
     <a onclick="show('plans')">🧠 خطط المافيا</a>
-    <a onclick="show('leaders')">👑 مسؤولين المافيا</a>
+    <a onclick="show('leaders')">👑 مسؤولين</a>
     <a onclick="show('language')">🗣️ تعليم اللغة</a>
 </div>
 
-<!-- الهيدر -->
 <header>
     <div>MafiaRussian</div>
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu-btn" onclick="toggle()">☰</div>
 </header>
 
-<!-- الأقسام -->
+<!-- أسلحة -->
 <div id="weapons" class="section">
 <h2>🔫 أسلحة المافيا</h2>
-<p>مسدسات – رشاشات – أسلحة مخفية – استخدام بأمر فقط</p>
+<div class="cards">
+    <div class="card">
+        <div class="icon">🔫</div>
+        <h3>AK-47</h3>
+        <p>سلاح ثقيل</p>
+    </div>
+    <div class="card">
+        <div class="icon">🔫</div>
+        <h3>Desert Eagle</h3>
+        <p>Deagle</p>
+    </div>
+    <div class="card">
+        <div class="icon">💣</div>
+        <h3>C4</h3>
+        <p>معدات خاصة</p>
+    </div>
+    <div class="card">
+        <div class="icon">🔫</div>
+        <h3>Glock 20</h3>
+        <p>خفيف وسريع</p>
+    </div>
+    <div class="card">
+        <div class="icon">🔫</div>
+        <h3>Pistol .50</h3>
+        <p>قوة عالية</p>
+    </div>
+</div>
 </div>
 
+<!-- خطط -->
 <div id="plans" class="section">
 <h2>🧠 خطط المافيا</h2>
-<p>مراقبة – توزيع أدوار – تنفيذ – انسحاب هادئ</p>
+<div class="cards">
+    <div class="card"><div class="icon">👁️</div><h3>مراقبة</h3></div>
+    <div class="card"><div class="icon">📍</div><h3>تحديد هدف</h3></div>
+    <div class="card"><div class="icon">⚡</div><h3>تنفيذ</h3></div>
+    <div class="card"><div class="icon">🚗</div><h3>انسحاب</h3></div>
+</div>
 </div>
 
+<!-- مسؤولين -->
 <div id="leaders" class="section">
 <h2>👑 مسؤولين المافيا</h2>
-<p>Boss – Underboss – Capo – Soldier</p>
+<div class="cards">
+    <div class="card"><div class="icon">👑</div><h3>Boss</h3></div>
+    <div class="card"><div class="icon">🦅</div><h3>Underboss</h3></div>
+    <div class="card"><div class="icon">🎩</div><h3>Capo</h3></div>
+    <div class="card"><div class="icon">🗡️</div><h3>Soldier</h3></div>
+</div>
 </div>
 
+<!-- اللغة -->
 <div id="language" class="section">
 <h2>🗣️ تعليم اللغة</h2>
-<table>
-<tr><th>روسي</th><th>النطق</th><th>المعنى</th><th>🔊</th></tr>
-<tr>
-<td>Здравствуйте</td>
-<td>زدرستفويتِه</td>
-<td>سلام عليكم</td>
-<td><button class="sound" onclick="speak('Здравствуйте')">🔊</button></td>
-</tr>
-<tr>
-<td>Готовы</td>
-<td>غوتوفي</td>
-<td>استعدوا</td>
-<td><button class="sound" onclick="speak('Готовы')">🔊</button></td>
-</tr>
-</table>
+<div class="cards">
+    <div class="card"><div class="icon">🇷🇺</div><h3>Здравствуйте</h3><p>سلام عليكم</p></div>
+    <div class="card"><div class="icon">🇷🇺</div><h3>Готовы</h3><p>استعدوا</p></div>
+</div>
 </div>
 
 <script>
-function enterSite(){
-    document.getElementById('welcome').style.display = 'none';
+function enter(){
+    document.getElementById('welcome').style.display='none';
     show('weapons');
 }
-
-function toggleMenu(){
-    let m = document.getElementById('menu');
-    m.style.right = (m.style.right === '0px') ? '-260px' : '0px';
+function toggle(){
+    let m=document.getElementById('menu');
+    m.style.right=(m.style.right==='0px')?'-260px':'0px';
 }
-
 function show(id){
-    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
-    document.getElementById('menu').style.right = '-260px';
-}
-
-function speak(text){
-    let u = new SpeechSynthesisUtterance(text);
-    u.lang = 'ru-RU';
-    speechSynthesis.speak(u);
+    document.querySelectorAll('.section').forEach(s=>s.style.display='none');
+    document.getElementById(id).style.display='block';
+    document.getElementById('menu').style.right='-260px';
 }
 </script>
 
