@@ -72,20 +72,26 @@ header button{
     box-shadow:0 0 15px #3a0070;
 }
 
+/* عنوان الكاتغوري */
 .card.big{
     grid-column:1/-1;
     font-size:1.3em;
-    background:rgba(122,44,255,0.12);
+    background:rgba(122,44,255,0.15);
+    box-shadow:0 0 25px rgba(122,44,255,0.4);
 }
 
 /* الترحيب */
-.welcome{
+#welcome{
+    display:grid;
+}
+.welcome-card{
     grid-column:1/-1;
     padding:45px 20px;
     border-radius:25px;
-    background:rgba(122,44,255,0.15);
+    background:rgba(122,44,255,0.18);
     text-align:center;
-    box-shadow:0 0 30px rgba(122,44,255,0.4);
+    box-shadow:0 0 35px rgba(122,44,255,0.45);
+    font-size:1.2em;
 }
 
 /* القائمة */
@@ -103,9 +109,107 @@ header button{
     color:#fff;
     cursor:pointer;
 }
+</style>
+</head>
 
-/* اللغة */
-.word{font-size:1.2em}
+<body>
+
+<div id="login">
+    <button onclick="enterSite()">تسجيل دخول</button>
+</div>
+
+<header id="header">
+    <button onclick="toggleMenu()">≡</button>
+</header>
+
+<div id="content">
+
+<!-- الترحيب -->
+<div class="cards" id="welcome">
+    <div class="welcome-card">
+        ☠ أهلاً بك في عالم المافيا الروسية  
+        <br>اضغط ≡ لاختيار القسم
+    </div>
+</div>
+
+<!-- القائمة -->
+<div id="menu">
+    <button onclick="showSection('laws')">☠ القوانين</button>
+    <button onclick="showSection('weapons')">☠ الأسلحة</button>
+    <button onclick="showSection('gangs')">☠ العصابات</button>
+    <button onclick="showSection('leaders')">☠ المسؤولين</button>
+    <button onclick="showSection('members')">☠ الأعضاء</button>
+    <button onclick="backHome()">⬅ الرجوع</button>
+</div>
+
+<!-- الأقسام -->
+<div class="cards" id="sections" style="display:none">
+
+<!-- القوانين -->
+<div class="card big" data-type="laws">☠ قوانين المافيا</div>
+<div class="card" data-type="laws">تنفيذ الأوامر بدون نقاش</div>
+<div class="card" data-type="laws">ممنوع التصرف بدون أمر</div>
+<div class="card" data-type="laws">قلة الاحترام = طرد</div>
+
+<!-- الأسلحة -->
+<div class="card big" data-type="weapons">☠ أسلحة المافيا</div>
+<div class="card" data-type="weapons">AK-47</div>
+<div class="card" data-type="weapons">Deagle</div>
+<div class="card" data-type="weapons">Glock 20</div>
+<div class="card" data-type="weapons">C4</div>
+
+<!-- العصابات -->
+<div class="card big" data-type="gangs">☠ العصابات المتحالفة</div>
+<div class="card" data-type="gangs">سكراب</div>
+<div class="card" data-type="gangs">لا يوجد</div>
+
+<!-- المسؤولين -->
+<div class="card big" data-type="leaders">☠ المسؤولين</div>
+<div class="card" data-type="leaders">☠ المسؤول العام</div>
+<div class="card" data-type="leaders">☠ نائب المسؤول</div>
+<div class="card" data-type="leaders">☠ ايفان ماكسيم</div>
+<div class="card" data-type="leaders">☠ اليكس ماكسيم</div>
+
+<!-- الأعضاء -->
+<div class="card big" data-type="members">☠ الأعضاء</div>
+<div class="card" data-type="members">☠ فيكتور ماكسيم</div>
+<div class="card" data-type="members">☠ بيتر ماكسيم</div>
+<div class="card" data-type="members">☠ سكاي ماكسيم</div>
+<div class="card" data-type="members">☠ انتوني ماكسيم</div>
+<div class="card" data-type="members">☠ جونيور ماكسيم</div>
+
+</div>
+</div>
+
+<script>
+function enterSite(){
+    login.style.display="none";
+    content.style.display="block";
+    header.style.display="block";
+    welcome.style.display="grid";
+}
+
+function toggleMenu(){
+    menu.style.display = menu.style.display==="flex" ? "none" : "flex";
+}
+
+function showSection(type){
+    welcome.style.display="none";
+    sections.style.display="grid";
+    document.querySelectorAll("#sections .card").forEach(card=>{
+        card.style.display = card.dataset.type===type ? "block" : "none";
+    });
+}
+
+function backHome(){
+    sections.style.display="none";
+    welcome.style.display="grid";
+    menu.style.display="none";
+}
+</script>
+
+</body>
+</html>.word{font-size:1.2em}
 .pron{color:#caa6ff;font-size:.9em}
 .meaning{opacity:.85;font-size:.9em}
 </style>
