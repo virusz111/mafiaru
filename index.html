@@ -29,11 +29,11 @@ body{
     background:#7a2cff;
     color:#fff;
     border:none;
-    border-radius:20px;
+    border-radius:25px;
     cursor:pointer;
 }
 
-/* زر الشخطات */
+/* الهيدر */
 header{
     display:none;
     position:fixed;
@@ -41,13 +41,45 @@ header{
     right:20px;
     z-index:9999;
 }
-header button{
+
+/* زر الشخطات الحقيقي */
+.burger{
+    width:35px;
+    height:28px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    cursor:pointer;
+}
+.burger span{
+    height:4px;
+    width:100%;
+    background:#7a2cff;
+    border-radius:5px;
+}
+
+/* القائمة الجانبية */
+#menu{
+    position:fixed;
+    top:80px;
+    right:20px;
+    width:220px;
+    background:#140022;
+    border:1px solid #7a2cff;
+    border-radius:18px;
+    padding:15px;
+    display:none;
+    z-index:9998;
+    box-shadow:0 0 25px rgba(122,44,255,.5);
+}
+#menu button{
+    width:100%;
+    margin-bottom:10px;
+    padding:12px;
+    border:none;
+    border-radius:15px;
     background:#7a2cff;
     color:#fff;
-    border:none;
-    font-size:1.8em;
-    padding:10px 14px;
-    border-radius:10px;
     cursor:pointer;
 }
 
@@ -63,6 +95,7 @@ header button{
     gap:15px;
 }
 
+/* Card */
 .card{
     background:#140022;
     border:1px solid #7a2cff;
@@ -72,88 +105,128 @@ header button{
     box-shadow:0 0 15px #3a0070;
 }
 
-/* عنوان الكاتغوري */
-.card.big{
+/* كبير */
+.big{
     grid-column:1/-1;
-    font-size:1.3em;
-    background:rgba(122,44,255,0.15);
-    box-shadow:0 0 25px rgba(122,44,255,0.4);
-}
-
-/* الترحيب */
-#welcome{
-    display:grid;
-}
-.welcome-card{
-    grid-column:1/-1;
-    padding:45px 20px;
-    border-radius:25px;
-    background:rgba(122,44,255,0.18);
-    text-align:center;
-    box-shadow:0 0 35px rgba(122,44,255,0.45);
     font-size:1.2em;
 }
 
-/* القائمة */
-#menu{
-    display:none;
-    flex-direction:column;
-    gap:10px;
-    margin:20px 0;
+/* ترحيب */
+.welcome{
+    grid-column:1/-1;
+    padding:45px 20px;
+    border-radius:25px;
+    background:rgba(122,44,255,.12);
+    box-shadow:0 0 30px rgba(122,44,255,.5);
 }
-#menu button{
-    padding:12px;
-    border:none;
-    border-radius:15px;
-    background:#7a2cff;
-    color:#fff;
-    cursor:pointer;
-}
+
+/* اللغة */
+.word{font-size:1.2em}
+.pron{color:#caa6ff;font-size:.9em}
+.meaning{opacity:.85;font-size:.9em}
 </style>
 </head>
 
 <body>
 
+<!-- تسجيل دخول -->
 <div id="login">
-    <button onclick="enterSite()">عمو ريان ?ست</button>
+    <button onclick="enterSite()">تسجيل دخول</button>
 </div>
 
 <header id="header">
-    <button onclick="toggleMenu()">≡</button>
+    <div class="burger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 </header>
+
+<div id="menu">
+    <button onclick="show('welcome')">☠ الترحيب</button>
+    <button onclick="show('laws')">☠ القوانين</button>
+    <button onclick="show('weapons')">☠ الأسلحة</button>
+    <button onclick="show('gangs')">☠ العصابات</button>
+    <button onclick="show('leaders')">☠ المسؤولين</button>
+    <button onclick="show('language')">☠ تعليم اللغة</button>
+</div>
 
 <div id="content">
 
+<div class="cards" id="cards">
+
 <!-- الترحيب -->
-<div class="cards" id="welcome">
-    <div class="welcome-card">
-        ☠ أهلاً بك في عالم المافيا الروسية  
-        <br>اضغط ≡ لاختيار القسم
-    </div>
+<div class="card welcome" data-type="welcome">
+☠ أهلاً بك في عالم المافيا الروسية  
+<br>استخدم زر الشخطات لاختيار القسم
 </div>
-
-<!-- القائمة -->
-<div id="menu">
-    <button onclick="showSection('laws')">☠ القوانين</button>
-    <button onclick="showSection('weapons')">☠ الأسلحة</button>
-    <button onclick="showSection('gangs')">☠ العصابات</button>
-    <button onclick="showSection('leaders')">☠ المسؤولين</button>
-    <button onclick="showSection('members')">☠ الأعضاء</button>
-    <button onclick="backHome()">⬅ الرجوع</button>
-</div>
-
-<!-- الأقسام -->
-<div class="cards" id="sections" style="display:none">
 
 <!-- القوانين -->
 <div class="card big" data-type="laws">☠ قوانين المافيا</div>
 <div class="card" data-type="laws">تنفيذ الأوامر بدون نقاش</div>
 <div class="card" data-type="laws">ممنوع التصرف بدون أمر</div>
-<div class="card" data-type="laws">قلة الاحترام = طرد</div>
+<div class="card" data-type="laws">الغياب بدون عذر محاسبة</div>
 
 <!-- الأسلحة -->
-<div class="card big" data-type="weapons">☠ أسلحة المافيا</div>
+<div class="card big" data-type="weapons">☠ الأسلحة</div>
 <div class="card" data-type="weapons">AK-47</div>
+<div class="card" data-type="weapons">Deagle</div>
+<div class="card" data-type="weapons">C4</div>
+<div class="card" data-type="weapons">Glock 20</div>
+<div class="card" data-type="weapons">Pistol .50</div>
+
+<!-- العصابات -->
+<div class="card big" data-type="gangs">☠ العصابات</div>
+<div class="card" data-type="gangs">سكراب</div>
+<div class="card" data-type="gangs">لا يوجد</div>
+
+<!-- المسؤولين و الأعضاء -->
+<div class="card big" data-type="leaders">☠ المسؤولين و الأعضاء</div>
+<div class="card" data-type="leaders">☠ المسؤول مجهول الهوية</div>
+<div class="card" data-type="leaders">☠ نائب المسؤول</div>
+<div class="card" data-type="leaders">☠ إيفان ماكسيم</div>
+<div class="card" data-type="leaders">☠ أليكس ماكسيم</div>
+<div class="card" data-type="leaders">☠ بيتر ماكسيم</div>
+<div class="card" data-type="leaders">☠ ديمتري ماكسيم</div>
+<div class="card" data-type="leaders">☠ فيكتور ماكسيم</div>
+
+<!-- اللغة -->
+<div class="card" data-type="language">
+<div class="word">Здравствуйте</div>
+<div class="pron">زدرستفويتي</div>
+<div class="meaning">مرحبا</div>
+</div>
+<div class="card" data-type="language">
+<div class="word">Готовы</div>
+<div class="pron">غوتوفي</div>
+<div class="meaning">استعدوا</div>
+</div>
+
+</div>
+</div>
+
+<script>
+function enterSite(){
+    login.style.display="none";
+    content.style.display="block";
+    header.style.display="block";
+    show('welcome');
+}
+
+function toggleMenu(){
+    menu.style.display = menu.style.display==="block" ? "none" : "block";
+}
+
+function show(type){
+    document.querySelectorAll("[data-type]").forEach(c=>{
+        c.style.display = c.dataset.type===type ? "block" : "none";
+    });
+    menu.style.display="none";
+}
+</script>
+
+</body>
+</html><div class="card" data-type="weapons">AK-47</div>
 <div class="card" data-type="weapons">Deagle</div>
 <div class="card" data-type="weapons">Glock 20</div>
 <div class="card" data-type="weapons">C4</div>
