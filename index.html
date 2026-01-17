@@ -22,7 +22,8 @@ body{
     justify-content:center;
     align-items:center;
     z-index:9999;
-    animation:fadeIn .8s;
+    opacity:1;
+    transition:opacity .6s;
 }
 .login-box{
     background:#140022;
@@ -32,7 +33,6 @@ body{
     width:280px;
     text-align:center;
     box-shadow:0 0 25px #3a0070;
-    animation:scaleIn .6s;
 }
 .login-box h2{
     margin-bottom:20px;
@@ -106,7 +106,7 @@ header button{
 /* المحتوى */
 #content{
     display:none;
-    padding:100px 15px;
+    padding:100px 15px 20px;
 }
 .cards{
     display:grid;
@@ -127,16 +127,6 @@ header button{
 }
 .welcome{
     background:rgba(122,44,255,.12);
-}
-
-/* أنيميشن */
-@keyframes fadeIn{
-    from{opacity:0}
-    to{opacity:1}
-}
-@keyframes scaleIn{
-    from{transform:scale(.8)}
-    to{transform:scale(1)}
 }
 </style>
 </head>
@@ -197,122 +187,17 @@ function login(){
     const u = document.getElementById("username").value.trim();
     const p = document.getElementById("password").value.trim();
     if(u === USERNAME && p === PASSWORD){
-        document.getElementById("login").style.display="none";
-        document.getElementById("content").style.display="block";
-        document.getElementById("header").style.display="block";
-        showSection('welcome');
+        const loginDiv = document.getElementById("login");
+        loginDiv.style.opacity = "0";  // أنيميشن fade
+        setTimeout(()=>{
+            loginDiv.style.display="none";
+            document.getElementById("content").style.display="block";
+            document.getElementById("header").style.display="block";
+            showSection('welcome');
+        },600); // نفس مدة الانيميشن
     }else{
         document.getElementById("error").style.display="block";
     }
-}
-
-function toggleMenu(){
-    const m = document.getElementById("menu");
-    m.style.display = m.style.display==="block" ? "none" : "block";
-}
-
-function showSection(type){
-    document.querySelectorAll(".card").forEach(c=>{
-        c.style.display = (c.dataset.type===type) ? "block" : "none";
-    });
-    document.getElementById("menu").style.display="none";
-}
-</script>
-
-</body>
-</html>    background:#7a2cff;
-    color:#fff;
-    cursor:pointer;
-}
-
-/* اللغة */
-.word{font-size:1.2em}
-.pron{color:#caa6ff;font-size:.9em}
-.meaning{opacity:.85;font-size:.9em}
-</style>
-</head>
-
-<body>
-
-<!-- تسجيل دخول -->
-<div id="login">
-    <button onclick="enterSite()">تسجيل دخول</button>
-</div>
-
-<!-- زر الشخطات -->
-<header id="header">
-    <button onclick="toggleMenu()">≡</button>
-</header>
-
-<!-- القائمة -->
-<div id="menu">
-    <button onclick="showSection('laws')">☠ القوانين</button>
-    <button onclick="showSection('weapons')">☠ الأسلحة</button>
-    <button onclick="showSection('gangs')">☠ العصابات</button>
-    <button onclick="showSection('leaders')">☠ المسؤولين</button>
-    <button onclick="showSection('language')">☠ تعليم اللغة</button>
-</div>
-
-<!-- المحتوى -->
-<div id="content">
-<div class="cards">
-
-<!-- ترحيب -->
-<div class="card big welcome" data-type="welcome">
-☠ أهلاً بك في عالم المافيا الروسية  
-<br>استخدم زر الشخطات لاختيار القسم
-</div>
-
-<!-- القوانين -->
-<div class="card big" data-type="laws">☠ قوانين المافيا</div>
-<div class="card" data-type="laws">☠ تنفيذ الأوامر بدون نقاش</div>
-<div class="card" data-type="laws">☠ ممنوع التصرف بدون أمر</div>
-<div class="card" data-type="laws">☠ مخالفة القوانين = طرد</div>
-
-<!-- الأسلحة -->
-<div class="card big" data-type="weapons">☠ الأسلحة</div>
-<div class="card" data-type="weapons">☠ AK-47</div>
-<div class="card" data-type="weapons">☠ Deagle</div>
-<div class="card" data-type="weapons">☠ C4</div>
-<div class="card" data-type="weapons">☠ Glock 20</div>
-<div class="card" data-type="weapons">☠ Pistol .50</div>
-
-<!-- العصابات -->
-<div class="card big" data-type="gangs">☠ العصابات</div>
-<div class="card" data-type="gangs">☠ سكراب</div>
-<div class="card" data-type="gangs">☠ لا يوجد</div>
-
-<!-- المسؤولين -->
-<div class="card big" data-type="leaders">☠ المسؤولين و الأعضاء</div>
-<div class="card" data-type="leaders">☠ المسؤول مجهول الهوية</div>
-<div class="card" data-type="leaders">☠ نائب المسؤول</div>
-<div class="card" data-type="leaders">☠ إيفان ماكسيم</div>
-<div class="card" data-type="leaders">☠ أليكس ماكسيم</div>
-<div class="card" data-type="leaders">☠ بيتر ماكسيم</div>
-<div class="card" data-type="leaders">☠ ديمتري ماكسيم</div>
-
-<!-- اللغة -->
-<div class="card big" data-type="language">☠ تعليم اللغة</div>
-<div class="card" data-type="language">
-    <div class="word">Здравствуйте</div>
-    <div class="pron">زدرستفويتي</div>
-    <div class="meaning">مرحبا</div>
-</div>
-<div class="card" data-type="language">
-    <div class="word">Готовы</div>
-    <div class="pron">غوتوفي</div>
-    <div class="meaning">استعدوا</div>
-</div>
-
-</div>
-</div>
-
-<script>
-function enterSite(){
-    document.getElementById("login").style.display="none";
-    document.getElementById("content").style.display="block";
-    document.getElementById("header").style.display="block";
-    showSection('welcome');
 }
 
 function toggleMenu(){
