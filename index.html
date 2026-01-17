@@ -4,64 +4,68 @@
 <meta charset="UTF-8">
 <title>MafiaRussian</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body{
     margin:0;
-    font-family:Arial;
+    font-family:Arial, sans-serif;
     background:#0a0a0a;
     color:#eee;
 }
 
-.login-screen{
+/* شاشة تسجيل الدخول */
+#login{
     position:fixed;
-    inset:0;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:#0a0a0a;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:#0a0a0a;
-    z-index:10;
+    z-index:9999;
 }
-.login-screen button{
-    padding:15px 35px;
+#login button{
+    padding:15px 40px;
     font-size:1.2em;
     background:#7a2cff;
-    color:white;
+    color:#fff;
     border:none;
     border-radius:20px;
     cursor:pointer;
 }
 
+/* الهيدر */
 header{
     display:none;
+    position:fixed;
+    top:0;left:0;
+    width:100%;
     background:#12001f;
     padding:15px;
     display:flex;
     justify-content:flex-end;
-    align-items:center;
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:5;
+    z-index:100;
 }
 header button{
     background:#7a2cff;
+    color:#fff;
     border:none;
-    color:white;
     font-size:1.5em;
     padding:5px 12px;
     border-radius:10px;
     cursor:pointer;
 }
 
-.container{
-    padding:80px 20px;
+/* المحتوى */
+#content{
     display:none;
+    padding:80px 15px 20px;
 }
 
 .cards{
     display:grid;
-    gap:15px;
     grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:15px;
 }
 
 .card{
@@ -71,637 +75,128 @@ header button{
     padding:20px;
     text-align:center;
     box-shadow:0 0 15px #3a0070;
-    cursor:pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
 }
-.card:hover{
-    transform: translateY(-5px);
-    box-shadow:0 0 25px #8a33ff;
-}
+
 .big{
     grid-column:1/-1;
 }
-.word{
-    font-size:1.2em;
-    margin-bottom:6px;
-}
-.pron{
-    font-size:.95em;
-    color:#caa6ff;
-}
-.meaning{
-    font-size:.9em;
-    opacity:.85;
-}
 
-.menuButtons{
+/* القائمة */
+#menu{
     display:none;
     flex-direction:column;
     gap:10px;
-    margin-top:10px;
+    margin:15px 0;
 }
-.menuButtons button{
+#menu button{
     padding:10px;
     border:none;
     border-radius:15px;
     background:#7a2cff;
-    color:white;
+    color:#fff;
     cursor:pointer;
 }
+
+/* كلمات اللغة */
+.word{font-size:1.2em}
+.pron{color:#caa6ff;font-size:.9em}
+.meaning{opacity:.85;font-size:.9em}
 </style>
 </head>
+
 <body>
 
-<div class="login-screen" id="login">
-    <button onclick="enter()">Login</button>
+<!-- تسجيل الدخول -->
+<div id="login">
+    <button onclick="enterSite()">تسجيل دخول</button>
 </div>
 
+<!-- الهيدر -->
 <header id="header">
     <button onclick="toggleMenu()">≡</button>
 </header>
 
-<div class="container" id="content">
+<!-- المحتوى -->
+<div id="content">
 
 <div class="cards">
-<div class="card big">
-☠ أهلاً بك في MafiaRussian <br>
-اضغط ≡ لاختيار القسم
-</div>
-</div>
-
-<div class="menuButtons" id="menuButtons">
-    <button onclick="showCards('laws')">☠ القوانين</button>
-    <button onclick="showCards('weapons')">☠ الأسلحة</button>
-    <button onclick="showCards('gangs')">☠ العصابات</button>
-    <button onclick="showCards('leaders')">☠ المسؤولين</button>
-    <button onclick="showCards('language')">☠ تعليم اللغة</button>
+    <div class="card big">
+        ☠ أهلاً بك في عالم المافيا الروسية  
+        <br>اضغط ≡ لاختيار القسم
+    </div>
 </div>
 
-<div class="cards" id="allCards" style="display:none;margin-top:15px;">
+<div id="menu">
+    <button onclick="show('laws')">القوانين</button>
+    <button onclick="show('weapons')">الأسلحة</button>
+    <button onclick="show('gangs')">العصابات</button>
+    <button onclick="show('leaders')">المسؤولين</button>
+    <button onclick="show('language')">تعليم اللغة</button>
+</div>
+
+<div class="cards" id="cards" style="display:none">
 
 <!-- القوانين -->
-<div class="card" data-group="laws">
-    <div class="word">قوانين المافيا</div>
-</div>
+<div class="card" data-type="laws">قوانين المافيا</div>
 
-<!-- الأسلحة -->
-<div class="card" data-group="weapons"><div class="word">AK-47</div></div>
-<div class="card" data-group="weapons"><div class="word">Deagle</div></div>
-<div class="card" data-group="weapons"><div class="word">C4</div></div>
-<div class="card" data-group="weapons"><div class="word">Glock 20</div></div>
-<div class="card" data-group="weapons"><div class="word">Pistol .50</div></div>
+<!-- الأسلحة (بدون تغيير) -->
+<div class="card" data-type="weapons">AK-47</div>
+<div class="card" data-type="weapons">Deagle</div>
+<div class="card" data-type="weapons">C4</div>
+<div class="card" data-type="weapons">Glock 20</div>
+<div class="card" data-type="weapons">Pistol .50</div>
 
 <!-- العصابات -->
-<div class="card" data-group="gangs"><div class="word">سكراب</div></div>
-<div class="card" data-group="gangs"><div class="word">لا يوجد</div></div>
+<div class="card" data-type="gangs">سكراب</div>
+<div class="card" data-type="gangs">لا يوجد</div>
 
-<!-- المسؤولين -->
-<div class="card" data-group="leaders"><div class="word">المسؤول مجهول الهوية</div></div>
-<div class="card" data-group="leaders"><div class="word">نائب مسؤول مجهول الهوية</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول ايفان ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول اليكس ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول بيتر ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول الفا ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مسؤول الاعضاء ديمتري ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مسؤول الاعضاء سيرغى ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو فيكتور ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو جونيور ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو سكاي ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو انتوني ماكسيم</div></div>
+<!-- المسؤولين (نفس الأسماء) -->
+<div class="card" data-type="leaders">المسؤول مجهول الهوية</div>
+<div class="card" data-type="leaders">نائب مسؤول مجهول الهوية</div>
+<div class="card" data-type="leaders">مساعد مسؤول ايفان ماكسيم</div>
+<div class="card" data-type="leaders">مساعد مسؤول اليكس ماكسيم</div>
+<div class="card" data-type="leaders">مساعد مسؤول بيتر ماكسيم</div>
+<div class="card" data-type="leaders">مساعد مسؤول الفا ماكسيم</div>
+<div class="card" data-type="leaders">مسؤول الاعضاء ديمتري ماكسيم</div>
+<div class="card" data-type="leaders">مسؤول الاعضاء سيرغى ماكسيم</div>
+<div class="card" data-type="leaders">عضو فيكتور ماكسيم</div>
+<div class="card" data-type="leaders">عضو جونيور ماكسيم</div>
+<div class="card" data-type="leaders">عضو سكاي ماكسيم</div>
+<div class="card" data-type="leaders">عضو انتوني ماكسيم</div>
 
-<!-- تعليم اللغة الروسية بدون صوت -->
-<div class="card" data-group="language">
+<!-- تعليم اللغة -->
+<div class="card" data-type="language">
     <div class="word">Здравствуйте</div>
     <div class="pron">زدرستفويتي</div>
     <div class="meaning">مرحبا</div>
 </div>
-<div class="card" data-group="language">
+<div class="card" data-type="language">
     <div class="word">Готовы</div>
     <div class="pron">غوتوفي</div>
     <div class="meaning">استعدوا</div>
-</div>
-<div class="card" data-group="language">
-    <div class="word">Привет</div>
-    <div class="pron">بريفيت</div>
-    <div class="meaning">أهلا</div>
-</div>
-<div class="card" data-group="language">
-    <div class="word">Спасибо</div>
-    <div class="pron">سباسيبا</div>
-    <div class="meaning">شكراً</div>
-</div>
-<div class="card" data-group="language">
-    <div class="word">Пока</div>
-    <div class="pron">باكا</div>
-    <div class="meaning">مع السلامة</div>
 </div>
 
 </div>
 </div>
 
 <script>
-function enter(){
+function enterSite(){
     document.getElementById("login").style.display="none";
     document.getElementById("content").style.display="block";
     document.getElementById("header").style.display="flex";
 }
 
 function toggleMenu(){
-    let m = document.getElementById("menuButtons");
-    m.style.display = m.style.display==="flex"?"none":"flex";
+    let m = document.getElementById("menu");
+    m.style.display = (m.style.display==="flex") ? "none" : "flex";
 }
 
-function showCards(group){
-    document.getElementById("allCards").style.display="grid";
-    document.querySelectorAll('#allCards .card').forEach(c=>{
-        c.style.display = c.getAttribute('data-group')===group?'block':'none';
+function show(type){
+    let box = document.getElementById("cards");
+    box.style.display="grid";
+    document.querySelectorAll("#cards .card").forEach(c=>{
+        c.style.display = (c.dataset.type===type) ? "block" : "none";
     });
-}
-</script>
-
-</body>
-</html>    margin-top:10px;
-}
-.menuButtons button{
-    padding:10px;
-    border:none;
-    border-radius:15px;
-    background:#7a2cff;
-    color:white;
-    cursor:pointer;
-}
-</style>
-</head>
-<body>
-
-<!-- تسجيل دخول -->
-<div class="login-screen" id="login">
-    <button onclick="enter()">تسجيل دخول</button>
-</div>
-
-<header id="header">
-    <button onclick="toggleMenu()">≡</button>
-</header>
-
-<div class="container" id="content">
-
-<div class="cards">
-<div class="card big">
-☠ أهلاً بك في MafiaRussian <br>
-اضغط ≡ لاختيار القسم
-</div>
-</div>
-
-<div class="menuButtons" id="menuButtons">
-    <button onclick="showCards('laws')">☠ القوانين</button>
-    <button onclick="showCards('weapons')">☠ الأسلحة</button>
-    <button onclick="showCards('gangs')">☠ العصابات</button>
-    <button onclick="showCards('leaders')">☠ المسؤولين</button>
-    <button onclick="showCards('language')">☠ تعليم اللغة</button>
-</div>
-
-<!-- Cards لكل شيء -->
-<div class="cards" id="allCards" style="display:none;margin-top:15px;">
-
-<!-- القوانين -->
-<div class="card" data-group="laws">
-    <div class="word">قوانين المافيا</div>
-</div>
-
-<!-- الأسلحة -->
-<div class="card" data-group="weapons"><div class="word">AK-47</div></div>
-<div class="card" data-group="weapons"><div class="word">Deagle</div></div>
-<div class="card" data-group="weapons"><div class="word">C4</div></div>
-<div class="card" data-group="weapons"><div class="word">Glock 20</div></div>
-<div class="card" data-group="weapons"><div class="word">Pistol .50</div></div>
-
-<!-- العصابات -->
-<div class="card" data-group="gangs"><div class="word">سكراب</div></div>
-<div class="card" data-group="gangs"><div class="word">لا يوجد</div></div>
-
-<!-- المسؤولين -->
-<div class="card" data-group="leaders"><div class="word">المسؤول مجهول الهوية</div></div>
-<div class="card" data-group="leaders"><div class="word">نائب مسؤول مجهول الهوية</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول ايفان ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول اليكس ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول بيتر ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول الفا ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مسؤول الاعضاء ديمتري ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مسؤول الاعضاء سيرغى ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو فيكتور ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو جونيور ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو سكاي ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو انتوني ماكسيم</div></div>
-
-<!-- تعليم اللغة الروسية مع الصوت والنطق -->
-<div class="card" data-group="language" onclick="playSound('russian1.mp3')">
-    <div class="word">Здравствуйте</div>
-    <div class="pron">زدرستفويتي</div>
-    <div class="meaning">مرحبا</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian2.mp3')">
-    <div class="word">Готовы</div>
-    <div class="pron">غوتوفي</div>
-    <div class="meaning">استعدوا</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian3.mp3')">
-    <div class="word">Привет</div>
-    <div class="pron">بريفيت</div>
-    <div class="meaning">أهلا</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian4.mp3')">
-    <div class="word">Спасибо</div>
-    <div class="pron">سباسيبا</div>
-    <div class="meaning">شكراً</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian5.mp3')">
-    <div class="word">Пока</div>
-    <div class="pron">باكا</div>
-    <div class="meaning">مع السلامة</div>
-</div>
-
-</div>
-</div>
-
-<script>
-function enter(){
-    document.getElementById("login").style.display="none";
-    document.getElementById("content").style.display="block";
-    document.getElementById("header").style.display="flex";
-}
-
-function toggleMenu(){
-    let m = document.getElementById("menuButtons");
-    m.style.display = m.style.display==="flex"?"none":"flex";
-}
-
-function showCards(group){
-    document.getElementById("allCards").style.display="grid";
-    document.querySelectorAll('#allCards .card').forEach(c=>{
-        c.style.display = c.getAttribute('data-group')===group?'block':'none';
-    });
-}
-
-function playSound(file){
-    new Audio(file).play();
-}
-</script>
-
-</body>
-</html>    margin-top:10px;
-}
-.menuButtons button{
-    padding:10px;
-    border:none;
-    border-radius:15px;
-    background:#7a2cff;
-    color:white;
-    cursor:pointer;
-}
-</style>
-</head>
-<body>
-
-<!-- تسجيل دخول -->
-<div class="login-screen" id="login">
-    <button onclick="enter()">تسجيل دخول</button>
-</div>
-
-<header id="header">
-    <button onclick="toggleMenu()">≡</button>
-</header>
-
-<div class="container" id="content">
-
-<div class="cards">
-<div class="card big">
-☠ أهلاً بك في MafiaRussian <br>
-اضغط ≡ لاختيار القسم
-</div>
-</div>
-
-<div class="menuButtons" id="menuButtons">
-    <button onclick="showCards('laws')">☠ القوانين</button>
-    <button onclick="showCards('weapons')">☠ الأسلحة</button>
-    <button onclick="showCards('gangs')">☠ العصابات</button>
-    <button onclick="showCards('leaders')">☠ المسؤولين</button>
-    <button onclick="showCards('language')">☠ تعليم اللغة</button>
-</div>
-
-<!-- Cards لكل شيء -->
-<div class="cards" id="allCards" style="display:none;margin-top:15px;">
-
-<!-- القوانين -->
-<div class="card" data-group="laws">
-    <div class="word">قوانين المافيا</div>
-</div>
-
-<!-- الأسلحة -->
-<div class="card" data-group="weapons"><div class="word">AK-47</div></div>
-<div class="card" data-group="weapons"><div class="word">Deagle</div></div>
-<div class="card" data-group="weapons"><div class="word">C4</div></div>
-<div class="card" data-group="weapons"><div class="word">Glock 20</div></div>
-<div class="card" data-group="weapons"><div class="word">Pistol .50</div></div>
-
-<!-- العصابات -->
-<div class="card" data-group="gangs"><div class="word">سكراب</div></div>
-<div class="card" data-group="gangs"><div class="word">لا يوجد</div></div>
-
-<!-- المسؤولين -->
-<div class="card" data-group="leaders"><div class="word">المسؤول مجهول الهوية</div></div>
-<div class="card" data-group="leaders"><div class="word">نائب مسؤول مجهول الهوية</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول ايفان ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول اليكس ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول بيتر ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول الفا ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مسؤول الاعضاء ديمتري ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مسؤول الاعضاء سيرغى ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو فيكتور ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو جونيور ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو سكاي ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو انتوني ماكسيم</div></div>
-
-<!-- تعليم اللغة الروسية مع الصوت والنطق -->
-<div class="card" data-group="language" onclick="playSound('russian1.mp3')">
-    <div class="word">Здравствуйте</div>
-    <div class="pron">زدرستفويتي</div>
-    <div class="meaning">مرحبا</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian2.mp3')">
-    <div class="word">Готовы</div>
-    <div class="pron">غوتوفي</div>
-    <div class="meaning">استعدوا</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian3.mp3')">
-    <div class="word">Привет</div>
-    <div class="pron">بريفيت</div>
-    <div class="meaning">أهلا</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian4.mp3')">
-    <div class="word">Спасибо</div>
-    <div class="pron">سباسيبا</div>
-    <div class="meaning">شكراً</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian5.mp3')">
-    <div class="word">Пока</div>
-    <div class="pron">باكا</div>
-    <div class="meaning">مع السلامة</div>
-</div>
-
-</div>
-</div>
-
-<script>
-function enter(){
-    document.getElementById("login").style.display="none";
-    document.getElementById("content").style.display="block";
-    document.getElementById("header").style.display="flex";
-}
-
-function toggleMenu(){
-    let m = document.getElementById("menuButtons");
-    m.style.display = m.style.display==="flex"?"none":"flex";
-}
-
-function showCards(group){
-    document.getElementById("allCards").style.display="grid";
-    document.querySelectorAll('#allCards .card').forEach(c=>{
-        c.style.display = c.getAttribute('data-group')===group?'block':'none';
-    });
-}
-
-function playSound(file){
-    new Audio(file).play();
-}
-</script>
-
-</body>
-</html>    margin-top:10px;
-}
-.menuButtons button{
-    padding:10px;
-    border:none;
-    border-radius:15px;
-    background:#7a2cff;
-    color:white;
-    cursor:pointer;
-}
-</style>
-</head>
-<body>
-
-<!-- تسجيل دخول -->
-<div class="login-screen" id="login">
-    <button onclick="enter()">Mafia Login</button>
-</div>
-
-<header id="header">
-    <button onclick="toggleMenu()">≡</button>
-</header>
-
-<div class="container" id="content">
-
-<div class="cards">
-<div class="card big">
-☠ أهلاً بك في MafiaRussian <br>
-اضغط ≡ لاختيار القسم
-</div>
-</div>
-
-<div class="menuButtons" id="menuButtons">
-    <button onclick="showCards('laws')">☠ القوانين</button>
-    <button onclick="showCards('weapons')">☠ الأسلحة</button>
-    <button onclick="showCards('gangs')">☠ العصابات</button>
-    <button onclick="showCards('leaders')">☠ المسؤولين</button>
-    <button onclick="showCards('language')">☠ تعليم اللغة</button>
-</div>
-
-<!-- Cards لكل شيء -->
-<div class="cards" id="allCards" style="display:none;margin-top:15px;">
-
-<!-- القوانين -->
-<div class="card" data-group="laws">
-    <div class="word">قوانين المافيا</div>
-</div>
-
-<!-- الأسلحة -->
-<div class="card" data-group="weapons"><div class="word">AK-47</div></div>
-<div class="card" data-group="weapons"><div class="word">Deagle</div></div>
-<div class="card" data-group="weapons"><div class="word">C4</div></div>
-<div class="card" data-group="weapons"><div class="word">Glock 20</div></div>
-<div class="card" data-group="weapons"><div class="word">Pistol .50</div></div>
-
-<!-- العصابات -->
-<div class="card" data-group="gangs"><div class="word">سكراب</div></div>
-<div class="card" data-group="gangs"><div class="word">لا يوجد</div></div>
-
-<!-- المسؤولين -->
-<div class="card" data-group="leaders"><div class="word">المسؤول مجهول الهوية</div></div>
-<div class="card" data-group="leaders"><div class="word">نائب مسؤول مجهول الهوية</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول ايفان ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول اليكس ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول بيتر ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مساعد مسؤول الفا ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مسؤول الاعضاء ديمتري ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">مسؤول الاعضاء سيرغى ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو فيكتور ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو جونيور ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو سكاي ماكسيم</div></div>
-<div class="card" data-group="leaders"><div class="word">عضو انتوني ماكسيم</div></div>
-
-<!-- تعليم اللغة الروسية مع الصوت والنطق -->
-<div class="card" data-group="language" onclick="playSound('russian1.mp3')">
-    <div class="word">Здравствуйте</div>
-    <div class="pron">زدرستفويتي</div>
-    <div class="meaning">مرحبا</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian2.mp3')">
-    <div class="word">Готовы</div>
-    <div class="pron">غوتوفي</div>
-    <div class="meaning">استعدوا</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian3.mp3')">
-    <div class="word">Привет</div>
-    <div class="pron">بريفيت</div>
-    <div class="meaning">أهلا</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian4.mp3')">
-    <div class="word">Спасибо</div>
-    <div class="pron">سباسيبا</div>
-    <div class="meaning">شكراً</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian5.mp3')">
-    <div class="word">Пока</div>
-    <div class="pron">باكا</div>
-    <div class="meaning">مع السلامة</div>
-</div>
-
-</div>
-</div>
-
-<script>
-function enter(){
-    document.getElementById("login").style.display="none";
-    document.getElementById("content").style.display="block";
-    document.getElementById("header").style.display="flex";
-}
-
-function toggleMenu(){
-    let m = document.getElementById("menuButtons");
-    m.style.display = m.style.display==="flex"?"none":"flex";
-}
-
-function showCards(group){
-    document.getElementById("allCards").style.display="grid";
-    document.querySelectorAll('#allCards .card').forEach(c=>{
-        c.style.display = c.getAttribute('data-group')===group?'block':'none';
-    });
-}
-
-function playSound(file){
-    new Audio(file).play();
-}
-</script>
-
-</body>
-</html>    color:white;
-    cursor:pointer;
-}
-</style>
-</head>
-<body>
-
-<!-- تسجيل دخول -->
-<div class="login-screen" id="login">
-    <button onclick="enter()">Login</button>
-</div>
-
-<header id="header">
-    <button onclick="toggleMenu()">≡</button>
-</header>
-
-<div class="container" id="content">
-
-<div class="cards">
-<div class="card big">
-☠ أهلاً بك في MafiaRussian <br>
-اضغط ≡ لاختيار القسم
-</div>
-</div>
-
-<div class="menuButtons" id="menuButtons">
-    <button onclick="showCards('language')">تعليم اللغة</button>
-</div>
-
-<!-- كروت اللغة -->
-<div class="cards" id="allCards" style="display:none;margin-top:15px;">
-
-<div class="card" data-group="language" onclick="playSound('russian1.mp3')">
-    <div class="word">Здравствуйте</div>
-    <div class="pron">زدرستفويتي</div>
-    <div class="meaning">مرحبا</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian2.mp3')">
-    <div class="word">Готовы</div>
-    <div class="pron">غوتوفي</div>
-    <div class="meaning">استعدوا</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian3.mp3')">
-    <div class="word">Привет</div>
-    <div class="pron">بريفيت</div>
-    <div class="meaning">أهلا</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian4.mp3')">
-    <div class="word">Спасибо</div>
-    <div class="pron">سباسيبا</div>
-    <div class="meaning">شكراً</div>
-</div>
-
-<div class="card" data-group="language" onclick="playSound('russian5.mp3')">
-    <div class="word">Пока</div>
-    <div class="pron">باكا</div>
-    <div class="meaning">مع السلامة</div>
-</div>
-
-</div>
-</div>
-
-<script>
-function enter(){
-    document.getElementById("login").style.display="none";
-    document.getElementById("content").style.display="block";
-    document.getElementById("header").style.display="flex";
-}
-
-function toggleMenu(){
-    let m = document.getElementById("menuButtons");
-    m.style.display = m.style.display==="flex"?"none":"flex";
-}
-
-function showCards(group){
-    document.getElementById("allCards").style.display="grid";
-    document.querySelectorAll('#allCards .card').forEach(c=>{
-        c.style.display = c.getAttribute('data-group')===group?'block':'none';
-    });
-}
-
-function playSound(file){
-    new Audio(file).play();
 }
 </script>
 
