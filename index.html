@@ -34,24 +34,20 @@ body{
     cursor:pointer;
 }
 
-/* الهيدر */
+/* الهيدر (زر الشخطات) */
 header{
     display:none;
     position:fixed;
-    top:0;left:0;
-    width:100%;
-    background:#12001f;
-    padding:-5px;
-    display:flex;
-    justify-content:flex-end;
-    z-index:100;
+    top:20px;
+    right:20px;
+    z-index:999;
 }
 header button{
     background:#7a2cff;
     color:#fff;
     border:none;
-    font-size:1.5em;
-    padding:5px 12px;
+    font-size:1.8em;
+    padding:10px 14px;
     border-radius:10px;
     cursor:pointer;
 }
@@ -59,7 +55,7 @@ header button{
 /* المحتوى */
 #content{
     display:none;
-    padding:80px 15px 20px;
+    padding:120px 15px 20px;
 }
 
 .cards{
@@ -68,11 +64,30 @@ header button{
     gap:15px;
 }
 
-.card.full.soft{
-    background:rgba(122,44,255,0.08);
+/* Card الترحيب كبير */
+.card.big{
+    grid-column:1/-1;
+    padding:40px 20px;
+    text-align:center;
     border-radius:20px;
+    background:#140022;
+    border:1px solid #7a2cff;
+    box-shadow:0 0 25px #3a0070;
+    margin-bottom:20px;
 }
 
+/* Card Full Soft */
+.card.full.soft{
+    grid-column:1/-1;
+    padding:40px 20px;
+    text-align:center;
+    border-radius:25px;
+    background:rgba(122,44,255,0.10);
+    box-shadow:0 0 25px rgba(122,44,255,0.35);
+    margin-bottom:20px;
+}
+
+/* Cards عادية */
 .card{
     background:#140022;
     border:1px solid #7a2cff;
@@ -82,19 +97,16 @@ header button{
     box-shadow:0 0 15px #3a0070;
 }
 
-.big{
-    grid-column:1/-1;
-}
-
 /* القائمة */
 #menu{
     display:none;
     flex-direction:column;
     gap:10px;
-    margin:15px 0;
+    margin-bottom:20px;
+    text-align:center;
 }
 #menu button{
-    padding:10px;
+    padding:12px;
     border:none;
     border-radius:15px;
     background:#7a2cff;
@@ -106,6 +118,118 @@ header button{
 .word{font-size:1.2em}
 .pron{color:#caa6ff;font-size:.9em}
 .meaning{opacity:.85;font-size:.9em}
+</style>
+</head>
+
+<body>
+
+<!-- تسجيل الدخول -->
+<div id="login">
+    <button onclick="enterSite()">تسجيل دخول</button>
+</div>
+
+<!-- الهيدر -->
+<header id="header">
+    <button onclick="toggleMenu()">≡</button>
+</header>
+
+<!-- المحتوى -->
+<div id="content">
+
+<!-- الترحيب -->
+<div class="cards">
+    <div class="card full soft big">
+        ☠ أهلاً بك في عالم المافيا الروسية  
+        <br>اضغط ≡ لاختيار القسم
+    </div>
+</div>
+
+<!-- القائمة (تظهر فوق الترحيب) -->
+<div id="menu">
+    <button onclick="show('laws')">☠ القوانين</button>
+    <button onclick="show('weapons')">☠ الأسلحة</button>
+    <button onclick="show('gangs')">☠ العصابات</button>
+    <button onclick="show('leaders')">☠ المسؤولين</button>
+    <button onclick="show('language')">☠ تعليم اللغة</button>
+</div>
+
+<!-- جميع Cards الأخرى -->
+<div class="cards" id="cards" style="display:none">
+
+<!-- القوانين -->
+<div class="card big" data-type="laws"> قوانين المافيا </div>
+<div class="card" data-type="laws">تنفيذ الاوامر بدون مناقشه</div>
+<div class="card" data-type="laws">ممنوع منعا باتا التصرف بدون امر مهما كان السبب ؟</div>
+<div class="card" data-type="laws">في حال صار اجتماع عصابات او لي المافيا ممنوع عليك التكلم الي في حال قالك احد المسؤولين تكلم؟</div>
+<div class="card" data-type="laws">اي خطأ و تم تنبيهك و ترجع تسويه اعتبر نفسك برا المافيا و الكلم لي الكل و جميعا ماسبق في حال خالفت برا المافيا؟</div>
+<div class="card" data-type="laws">التصرف بي شكل يليق بك انتا كا شخص من المافيا الروسية و عدم مخالفت اي امر ملزوم ؟</div>
+<div class="card" data-type="laws">ممنوع تطلب سلاح الي في اوقات الحرب او في حال تم ارسلك في مهمه فقط</div>
+<div class="card" data-type="laws">التصرف بي شكل طفولي و عدم اخذ الامور بي جديه رح يتم طردك مباشر بدون تفكير ؟</div>
+<div class="card" data-type="laws">غيابك بدون عذر رح تتحاسب عليها لو مين ماكان</div>
+
+<!-- الأسلحة -->
+<div class="card" data-type="weapons">AK-47</div>
+<div class="card" data-type="weapons">Deagle</div>
+<div class="card" data-type="weapons">C4</div>
+<div class="card" data-type="weapons">Glock 20</div>
+<div class="card" data-type="weapons">Pistol .50</div>
+
+<!-- العصابات -->
+<div class="card" data-type="gangs">سكراب</div>
+<div class="card" data-type="gangs">لا يوجد</div>
+
+<!-- المسؤولين -->
+<div class="card" data-type="leaders">المسؤول مجهول الهوية</div>
+<div class="card" data-type="leaders">نائب مسؤول مجهول الهوية</div>
+<div class="card" data-type="leaders">مساعد مسؤول ايفان ماكسيم</div>
+<div class="card" data-type="leaders">مساعد مسؤول اليكس ماكسيم</div>
+<div class="card" data-type="leaders">مساعد مسؤول بيتر ماكسيم</div>
+<div class="card" data-type="leaders">مساعد مسؤول الفا ماكسيم</div>
+<div class="card" data-type="leaders">مسؤول الاعضاء ديمتري ماكسيم</div>
+<div class="card" data-type="leaders">مسؤول الاعضاء سيرغى ماكسيم</div>
+<div class="card" data-type="leaders">عضو فيكتور ماكسيم</div>
+<div class="card" data-type="leaders">عضو جونيور ماكسيم</div>
+<div class="card" data-type="leaders">عضو سكاي ماكسيم</div>
+<div class="card" data-type="leaders">عضو انتوني ماكسيم</div>
+
+<!-- تعليم اللغة -->
+<div class="card" data-type="language">
+    <div class="word">Здравствуйте</div>
+    <div class="pron">زدرستفويتي</div>
+    <div class="meaning">مرحبا</div>
+</div>
+<div class="card" data-type="language">
+    <div class="word">Готовы</div>
+    <div class="pron">غوتوفي</div>
+    <div class="meaning">استعدوا</div>
+</div>
+
+</div>
+</div>
+
+<script>
+function enterSite(){
+    document.getElementById("login").style.display="none";
+    document.getElementById("content").style.display="block";
+    document.getElementById("header").style.display="flex";
+}
+
+function toggleMenu(){
+    let m = document.getElementById("menu");
+    m.style.display = (m.style.display==="flex") ? "none" : "flex";
+}
+
+function show(type){
+    let box = document.getElementById("cards");
+    box.style.display="grid";
+    document.querySelectorAll("#cards .card").forEach(c=>{
+        c.style.display = (c.dataset.type===type) ? "block" : "none";
+    });
+}
+</script>
+
+</body>
+</html>.meaning{opacity:.85;font-size:.9em}
 </style>
 </head>
 
