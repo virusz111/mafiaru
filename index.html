@@ -16,13 +16,12 @@ body{
 /* شاشة تسجيل الدخول */
 #login{
     position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
+    inset:0;
     background:#0a0a0a;
     display:flex;
     justify-content:center;
     align-items:center;
-    z-index:10000;  /* أعلى من كل العناصر */
+    z-index:10000;
 }
 #login button{
     padding:15px 40px;
@@ -34,9 +33,179 @@ body{
     cursor:pointer;
 }
 
-/* الهيدر (زر الشخطات) */
+/* زر الشخطات ثابت */
 header{
     display:none;
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:99999;
+}
+header button{
+    width:48px;
+    height:48px;
+    background:rgba(122,44,255,0.9);
+    color:#fff;
+    border:none;
+    font-size:1.8em;
+    border-radius:12px;
+    cursor:pointer;
+    box-shadow:0 0 15px rgba(122,44,255,0.6);
+}
+
+/* القائمة تطلع تحت الزر */
+#menu{
+    position:fixed;
+    top:80px;
+    right:20px;
+    display:none;
+    flex-direction:column;
+    gap:10px;
+    background:rgba(20,0,34,0.95);
+    padding:15px;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(122,44,255,0.5);
+    z-index:99998;
+}
+#menu button{
+    padding:12px 18px;
+    border:none;
+    border-radius:15px;
+    background:#7a2cff;
+    color:#fff;
+    cursor:pointer;
+}
+
+/* المحتوى */
+#content{
+    display:none;
+    padding:120px 15px 20px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:15px;
+}
+
+/* Card كبير */
+.card.big{
+    grid-column:1/-1;
+    padding:40px 20px;
+    text-align:center;
+    border-radius:20px;
+    background:#140022;
+    border:1px solid #7a2cff;
+    box-shadow:0 0 25px #3a0070;
+    margin-bottom:20px;
+}
+
+/* Card Full Soft */
+.card.full.soft{
+    grid-column:1/-1;
+    padding:40px 20px;
+    text-align:center;
+    border-radius:25px;
+    background:rgba(122,44,255,0.10);
+    box-shadow:0 0 25px rgba(122,44,255,0.35);
+    margin-bottom:20px;
+}
+
+/* Cards عادية */
+.card{
+    background:#140022;
+    border:1px solid #7a2cff;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 0 15px #3a0070;
+}
+
+/* كلمات اللغة */
+.word{font-size:1.2em}
+.pron{color:#caa6ff;font-size:.9em}
+.meaning{opacity:.85;font-size:.9em}
+</style>
+</head>
+
+<body>
+
+<!-- تسجيل الدخول -->
+<div id="login">
+    <button onclick="enterSite()">تسجيل دخول</button>
+</div>
+
+<!-- زر الشخطات -->
+<header id="header">
+    <button onclick="toggleMenu()">≡</button>
+</header>
+
+<!-- القائمة -->
+<div id="menu">
+    <button onclick="show('laws')">☠ القوانين</button>
+    <button onclick="show('weapons')">☠ الأسلحة</button>
+    <button onclick="show('gangs')">☠ العصابات</button>
+    <button onclick="show('leaders')">☠ المسؤولين و الاعضاء</button>
+    <button onclick="show('language')">☠ تعليم اللغة</button>
+</div>
+
+<!-- المحتوى -->
+<div id="content">
+
+<div class="cards">
+    <div class="card full soft big">
+        ☠ اهلا بك في عالم المافيا الروسية  
+        <br>اضغط ≡ لاختيار القسم
+    </div>
+</div>
+
+<div class="cards" id="cards" style="display:none">
+
+<div class="card big" data-type="laws">قوانين المافيا</div>
+<div class="card" data-type="laws">تنفيذ الاوامر بدون مناقشه</div>
+<div class="card" data-type="laws">ممنوع التصرف بدون امر</div>
+
+<div class="card big" data-type="weapons">الأسلحة</div>
+<div class="card" data-type="weapons">AK-47</div>
+<div class="card" data-type="weapons">Deagle</div>
+
+<div class="card big" data-type="gangs">المتحالفون</div>
+<div class="card" data-type="gangs">سكراب</div>
+
+<div class="card big" data-type="leaders">المسؤولين و الاعضاء</div>
+<div class="card" data-type="leaders">ايفان ماكسيم</div>
+
+<div class="card" data-type="language">
+    <div class="word">Готовы</div>
+    <div class="pron">غوتوفي</div>
+    <div class="meaning">استعدوا</div>
+</div>
+
+</div>
+</div>
+
+<script>
+function enterSite(){
+    login.style.display="none";
+    content.style.display="block";
+    header.style.display="block";
+}
+
+function toggleMenu(){
+    menu.style.display = (menu.style.display==="flex") ? "none" : "flex";
+}
+
+function show(type){
+    cards.style.display="grid";
+    document.querySelectorAll("#cards .card").forEach(c=>{
+        c.style.display = (c.dataset.type===type) ? "block" : "none";
+    });
+    menu.style.display="none";
+}
+</script>
+
+</body>
+</html>    display:none;
     position:fixed;
     top:20px;
     right:20px;
