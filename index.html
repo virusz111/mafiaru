@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>MafiaRussian</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 body{
     margin:0;
@@ -13,7 +12,7 @@ body{
     color:#eee;
 }
 
-/* شاشة الدخول */
+/* شاشة تسجيل الدخول */
 .login-screen{
     position:fixed;
     inset:0;
@@ -31,18 +30,20 @@ body{
     border:none;
     border-radius:20px;
     box-shadow:0 0 20px #3a0070;
+    cursor:pointer;
 }
 
-/* المحتوى */
+/* container */
 .container{
-    padding:20px;
     display:none;
+    padding:20px;
 }
 
+/* Cards */
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
     gap:18px;
+    grid-template-columns:1fr;
 }
 
 .card{
@@ -52,34 +53,36 @@ body{
     padding:20px;
     text-align:center;
     box-shadow:0 0 20px #3a0070;
+    cursor:pointer;
 }
 
 .card.big{
-    grid-column:1/-1;
-    cursor:pointer;
+    font-size:1.2em;
 }
 
 .icon{
     font-size:2.8em;
     margin-bottom:10px;
 }
-.title{
-    color:#c9a6ff;
-    margin-bottom:10px;
-    font-size:1.2em;
-}
-.small{
-    font-size:.9em;
-    opacity:.85;
+
+.button-row{
+    display:none;
+    margin-top:15px;
+    display:grid;
+    gap:10px;
 }
 
-/* باقي الأقسام */
-#otherCards{
-    display:none;
+.button-row button{
+    padding:10px;
+    border:none;
+    border-radius:15px;
+    background:#7a2cff;
+    color:white;
+    font-size:1em;
+    cursor:pointer;
 }
 </style>
 </head>
-
 <body>
 
 <!-- تسجيل الدخول -->
@@ -87,25 +90,46 @@ body{
     <button onclick="enter()">تسجيل دخول</button>
 </div>
 
+<!-- المحتوى -->
 <div class="container" id="content">
 <div class="cards">
 
 <!-- الترحيب -->
-<div class="card big" onclick="showOthers()">
+<div class="card big">
     <div class="icon">🖤</div>
-    <div class="title">MafiaRussian</div>
-    مرحباً بك في عالم المافيا<br>
-    اضغط هنا للمتابعة
+    مرحباً بك في عالم MafiaRussian<br><br>
+    <button onclick="toggleMenu()" style="padding:8px 15px; border:none; border-radius:12px; background:#7a2cff; color:white; cursor:pointer;">≡ القائمة</button>
+
+    <!-- أزرار بعد الضغط على الخطاط -->
+    <div class="button-row" id="menuButtons">
+        <button onclick="alert('القوانين')">📜 القوانين</button>
+        <button onclick="alert('الأسلحة')">🔫 الأسلحة</button>
+        <button onclick="alert('العصابات')">🕵️ العصابات</button>
+        <button onclick="alert('المسؤولين')">👑 المسؤولين</button>
+    </div>
 </div>
 
-<!-- باقي المربعات -->
-<div id="otherCards" class="cards">
+</div>
+</div>
 
-    <div class="card">
-        <div class="icon">🔫</div>
-        <div class="title">أسلحة المافيا</div>
-        AK-47<br>Deagle<br>Glock 20<br>Pistol .50<br>C4
-    </div>
+<script>
+function enter(){
+    document.getElementById("login").style.display="none";
+    document.getElementById("content").style.display="block";
+}
+
+function toggleMenu(){
+    let menu = document.getElementById("menuButtons");
+    if(menu.style.display==="grid"){
+        menu.style.display="none";
+    }else{
+        menu.style.display="grid";
+    }
+}
+</script>
+
+</body>
+</html>    </div>
 
     <div class="card">
         <div class="icon">🧠</div>
