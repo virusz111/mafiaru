@@ -227,6 +227,16 @@ header button{
 </audio>
 
 <script>
+// عناصر DOM
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+const error = document.getElementById("error");
+const loginDiv = document.getElementById("login");
+const content = document.getElementById("content");
+const header = document.getElementById("header");
+const userDisplay = document.getElementById("userDisplay");
+const menu = document.getElementById("menu");
+
 // بيانات الدخول
 const ACCOUNTS = [
     {user:"بيتر", pass:"2008"},
@@ -246,12 +256,12 @@ function login(){
     }
 
     const music = document.getElementById("bgMusic");
-    music.volume=0.4;
+    music.volume = 0.4;
     music.play();
 
-    login.style.opacity="0";
+    loginDiv.style.opacity="0";
     setTimeout(()=>{
-        login.style.display="none";
+        loginDiv.style.display="none";
         content.style.display="block";
         header.style.display="block";
         userDisplay.innerText = acc.user;
