@@ -247,7 +247,12 @@ function login(){
     const u = document.getElementById("username").value.trim();
     const p = document.getElementById("password").value.trim();
     const match = ACCOUNTS.find(a=>a.user===u && a.pass===p);
+
     if(match){
+        const music = document.getElementById("bgMusic");
+        music.volume = 0.4; // صوت ناعم
+        music.play();       // تشغيل الموسيقى
+
         const loginDiv = document.getElementById("login");
         loginDiv.style.opacity = "0";
         setTimeout(()=>{
