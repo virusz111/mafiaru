@@ -22,7 +22,6 @@ body{
     justify-content:center;
     align-items:center;
     z-index:9999;
-    opacity:1;
     transition:opacity .6s;
 }
 .login-box{
@@ -33,9 +32,6 @@ body{
     width:280px;
     text-align:center;
     box-shadow:0 0 25px #3a0070;
-}
-.login-box h2{
-    margin-bottom:20px;
 }
 .login-box input{
     width:100%;
@@ -57,12 +53,11 @@ body{
 }
 #error{
     color:#ff5c5c;
-    font-size:.9em;
-    margin-top:8px;
     display:none;
+    margin-top:8px;
 }
 
-/* زر الشخطات */
+/* زر القائمة */
 header{
     display:none;
     position:fixed;
@@ -101,7 +96,6 @@ header button{
     border-radius:12px;
     background:#7a2cff;
     color:#fff;
-    cursor:pointer;
 }
 
 /* المحتوى */
@@ -115,37 +109,29 @@ header button{
     gap:15px;
 }
 .card{
-    background: rgba(20, 0, 34, 0.6);
+    background:rgba(20,0,34,.65);
     border:1px solid #7a2cff;
     border-radius:18px;
     padding:20px;
     text-align:center;
-    box-shadow:0 0 15px #3a0070;
     display:none;
 }
 .big{
     grid-column:1/-1;
 }
 .welcome{
-    background: linear-gradient(
-        135deg,
-        rgba(122,44,255,0.35),
-        rgba(20,0,34,0.7)
-    );
-    text-shadow: 0 0 10px rgba(122,44,255,0.8);
+    background:linear-gradient(135deg,rgba(122,44,255,.35),rgba(20,0,34,.8));
+    text-shadow:0 0 10px rgba(122,44,255,.8);
 }
-
 .welcome-title{
     font-size:1.6em;
     margin-bottom:10px;
     letter-spacing:1px;
 }
-
 .welcome-name{
     color:#caa6ff;
     font-weight:bold;
 }
-
 .welcome-motto{
     margin-top:12px;
     font-size:1.1em;
@@ -156,18 +142,18 @@ header button{
 </head>
 <body>
 
-<!-- تسجيل دخول -->
+<!-- تسجيل الدخول -->
 <div id="login">
     <div class="login-box">
         <h2>☠ تسجيل الدخول</h2>
-        <input type="text" id="username" placeholder="الاسم">
-        <input type="password" id="password" placeholder="الرمز">
+        <input id="username" placeholder="الاسم">
+        <input id="password" type="password" placeholder="الرمز">
         <button onclick="login()">دخول</button>
-        <div id="error">الاسم أو الرمز غير صحيح</div>
+        <div id="error">الاسم أو الرمز خطأ</div>
     </div>
 </div>
 
-<!-- زر الشخطات -->
+<!-- زر القائمة -->
 <header id="header">
     <button onclick="toggleMenu()">≡</button>
 </header>
@@ -177,7 +163,7 @@ header button{
     <button onclick="showSection('welcome')">☠ الترحيب</button>
     <button onclick="showSection('laws')">☠ القوانين</button>
     <button onclick="showSection('weapons')">☠ الأسلحة</button>
-    <button onclick="showSection('leaders')">☠ المسؤولين و الاعضاء</button>
+    <button onclick="showSection('leaders')">☠ المسؤولين و الأعضاء</button>
     <button onclick="showSection('gangs')">☠ العصابات</button>
 </div>
 
@@ -188,7 +174,7 @@ header button{
 <!-- الترحيب -->
 <div class="card big welcome" data-type="welcome">
     <div class="welcome-title">
-        ☠ أهلاً بك <span class="welcome-name" id="userDisplay">بيتر ماكسيم</span>
+        ☠ أهلاً بك <span class="welcome-name" id="userDisplay">عضو</span>
     </div>
     <div>
         في عالم المافيا الروسية
@@ -198,11 +184,12 @@ header button{
         من يخون يُمحى… ومن يخلص يُرفع
     </div>
 </div>
-    
+
 <!-- القوانين -->
 <div class="card big" data-type="laws">☠ قوانين المافيا</div>
 <div class="card" data-type="laws">☠ تنفيذ الأوامر بدون نقاش</div>
-<div class="card" data-type="laws">☠ ممنوع التصرف بدون أمر مهما كان السبب</div>
+<div class="card" data-type="laws">☠ ممنوع الخيانة أو التصرف بدون أمر</div>
+<div class="card" data-type="laws">☠ الولاء فوق كل شيء</div>
 
 <!-- الأسلحة -->
 <div class="card big" data-type="weapons">☠ الأسلحة</div>
@@ -213,7 +200,7 @@ header button{
 <div class="card" data-type="weapons">☠ Pistol .50</div>
 
 <!-- المسؤولين و الأعضاء -->
-<div class="card big" data-type="leaders">☠ المسؤولين و الاعضاء</div>
+<div class="card big" data-type="leaders">☠ المسؤولين و الأعضاء</div>
 <div class="card" data-type="leaders">☠ مسؤول المافيا مجهول الهوية</div>
 <div class="card" data-type="leaders">☠ نائب مسؤول المافيا مجهول الهوية</div>
 <div class="card" data-type="leaders">☠ ايفان ماكسيم مساعد مسؤول</div>
@@ -234,6 +221,11 @@ header button{
 </div>
 </div>
 
+<!-- الموسيقى -->
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 // بيانات الدخول
 const ACCOUNTS = [
@@ -244,39 +236,38 @@ const ACCOUNTS = [
 ];
 
 function login(){
-    const u = document.getElementById("username").value.trim();
-    const p = document.getElementById("password").value.trim();
-    const match = ACCOUNTS.find(a=>a.user===u && a.pass===p);
+    const u = username.value.trim();
+    const p = password.value.trim();
+    const acc = ACCOUNTS.find(a=>a.user===u && a.pass===p);
 
-    if(match){
-        const music = document.getElementById("bgMusic");
-        music.volume = 0.4; // صوت ناعم
-        music.play();       // تشغيل الموسيقى
-
-        const loginDiv = document.getElementById("login");
-        loginDiv.style.opacity = "0";
-        setTimeout(()=>{
-            loginDiv.style.display="none";
-            document.getElementById("content").style.display="block";
-            document.getElementById("header").style.display="block";
-            document.getElementById("userDisplay").innerText = match.user;
-            showSection('welcome');
-        },600);
-    }else{
-        document.getElementById("error").style.display="block";
+    if(!acc){
+        error.style.display="block";
+        return;
     }
+
+    const music = document.getElementById("bgMusic");
+    music.volume=0.4;
+    music.play();
+
+    login.style.opacity="0";
+    setTimeout(()=>{
+        login.style.display="none";
+        content.style.display="block";
+        header.style.display="block";
+        userDisplay.innerText = acc.user;
+        showSection('welcome');
+    },600);
 }
 
 function toggleMenu(){
-    const m = document.getElementById("menu");
-    m.style.display = m.style.display==="block" ? "none" : "block";
+    menu.style.display = menu.style.display==="block" ? "none":"block";
 }
 
 function showSection(type){
     document.querySelectorAll(".card").forEach(c=>{
-        c.style.display = (c.dataset.type===type) ? "block" : "none";
+        c.style.display = c.dataset.type===type ? "block":"none";
     });
-    document.getElementById("menu").style.display="none";
+    menu.style.display="none";
 }
 </script>
 
