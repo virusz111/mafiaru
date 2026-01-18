@@ -127,7 +127,30 @@ header button{
     grid-column:1/-1;
 }
 .welcome{
-    background:rgba(122,44,255,.12);
+    background: linear-gradient(
+        135deg,
+        rgba(122,44,255,0.35),
+        rgba(20,0,34,0.7)
+    );
+    text-shadow: 0 0 10px rgba(122,44,255,0.8);
+}
+
+.welcome-title{
+    font-size:1.6em;
+    margin-bottom:10px;
+    letter-spacing:1px;
+}
+
+.welcome-name{
+    color:#caa6ff;
+    font-weight:bold;
+}
+
+.welcome-motto{
+    margin-top:12px;
+    font-size:1.1em;
+    opacity:.9;
+    letter-spacing:1px;
 }
 </style>
 </head>
@@ -163,8 +186,19 @@ header button{
 <div class="cards">
 
 <!-- الترحيب -->
-<div class="card big welcome" data-type="welcome">☠ أهلاً بك <span id="userDisplay">بيتر ماكسيم</span><br>في عالم المافيا الروسية</div>
-
+<div class="card big welcome" data-type="welcome">
+    <div class="welcome-title">
+        ☠ أهلاً بك <span class="welcome-name" id="userDisplay">بيتر ماكسيم</span>
+    </div>
+    <div>
+        في عالم المافيا الروسية
+    </div>
+    <div class="welcome-motto">
+        ☠ الولاء قبل الدم ☠<br>
+        من يخون يُمحى… ومن يخلص يُرفع
+    </div>
+</div>
+    
 <!-- القوانين -->
 <div class="card big" data-type="laws">☠ قوانين المافيا</div>
 <div class="card" data-type="laws">☠ تنفيذ الأوامر بدون نقاش</div>
