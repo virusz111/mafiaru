@@ -13,6 +13,7 @@ body{
     color:#eee;
 }
 
+/* شاشة تسجيل الدخول */
 #login{
     position:fixed;
     inset:0;
@@ -56,6 +57,7 @@ body{
     margin-top:8px;
 }
 
+/* زر القائمة */
 header{
     display:none;
     position:fixed;
@@ -73,6 +75,7 @@ header button{
     cursor:pointer;
 }
 
+/* القائمة */
 #menu{
     display:none;
     position:fixed;
@@ -93,8 +96,10 @@ header button{
     border-radius:12px;
     background:#7a2cff;
     color:#fff;
+    cursor:pointer;
 }
 
+/* المحتوى */
 #content{
     display:none;
     padding:100px 15px 20px;
@@ -135,30 +140,33 @@ header button{
     letter-spacing:1px;
 }
 
-#chat{
-    margin-top:20px;
-}
-#chatMessages{
-    max-height:250px;
+/* دردشة */
+#chatArea, #adminChatArea{
+    max-height:300px;
     overflow-y:auto;
-    background:rgba(0,0,0,.3);
+    background:rgba(0,0,0,0.3);
     padding:10px;
     border-radius:12px;
+    margin-bottom:10px;
 }
-#chat input[type="text"]{
-    width:70%;
-    padding:8px;
+.message{
+    background:rgba(122,44,255,0.3);
+    padding:6px 10px;
     border-radius:8px;
+    margin:5px 0;
+}
+input[type=text], textarea{
+    width:100%;
+    padding:8px;
+    border-radius:10px;
     border:none;
     outline:none;
+    margin-bottom:6px;
 }
-#chat input[type="file"]{
-    padding:5px;
-}
-#chat button{
-    padding:8px 12px;
+button.sendBtn{
+    padding:8px 15px;
     border:none;
-    border-radius:8px;
+    border-radius:12px;
     background:#7a2cff;
     color:#fff;
     cursor:pointer;
@@ -167,6 +175,7 @@ header button{
 </head>
 <body>
 
+<!-- تسجيل الدخول -->
 <div id="login">
     <div class="login-box">
         <h2>☠ تسجيل الدخول</h2>
@@ -177,73 +186,51 @@ header button{
     </div>
 </div>
 
+<!-- زر القائمة -->
 <header id="header">
     <button onclick="toggleMenu()">≡</button>
-    <button onclick="toggleMute()">🔇</button>
 </header>
 
 <!-- القائمة -->
 <div id="menu">
     <button onclick="showSection('welcome')">☠ الترحيب</button>
-    <button onclick="showSection('laws')">☠ القوانين</button>
-    <button onclick="showSection('weapons')">☠ الأسلحة</button>
-    <button onclick="showSection('leaders')">☠ المسؤولين و الأعضاء</button>
-    <button onclick="showSection('gangs')">☠ العصابات</button>
-    <button onclick="showSection('house')">☠ البيوت</button>
-    <button onclick="showSection('house-gun')">☠ Houses Guns</button>
-    <button onclick="showSection('chat')">☠ الدردشة</button>
+    <button onclick="showSection('chat')">☠ دردشة</button>
+    <button onclick="showSection('announcements')">☠ الإعلانات</button>
 </div>
 
+<!-- المحتوى -->
 <div id="content">
 <div class="cards">
 
+<!-- الترحيب -->
 <div class="card big welcome" data-type="welcome">
     <div class="welcome-title">
         ☠ أهلاً بك <span class="welcome-name" id="userDisplay">عضو</span>
     </div>
-    <div>في عالم المافيا الروسية</div>
     <div class="welcome-motto">
         ☠ الولاء قبل الدم ☠<br>من يخون يُمحى… ومن يخلص يُرفع
     </div>
 </div>
 
-<div class="card big" data-type="laws">☠ قوانين المافيا</div>
-<div class="card" data-type="laws">☠ تنفيذ الأوامر بدون نقاش</div>
+<!-- دردشة -->
+<div class="card big" data-type="chat">
+    <div id="chatArea"></div>
+    <textarea id="chatInput" placeholder="اكتب رسالتك هنا..."></textarea>
+    <button class="sendBtn" onclick="sendChat()">إرسال</button>
+</div>
 
-<div class="card big" data-type="weapons">☠ الأسلحة</div>
-<div class="card" data-type="weapons">☠ AK-47</div>
-
-<div class="card big" data-type="leaders">☠ المسؤولين و الأعضاء</div>
-<div class="card" data-type="leaders">☠ ايفان ماكسيم مساعد مسؤول</div>
-<div class="card" data-type="leaders">☠ بيتر ماكسيم مساعد مسؤول</div>
-<div class="card" data-type="leaders">☠ اليكس ماكسيم مساعد مسؤول</div>
-<div class="card" data-type="leaders">☠ ديمتري ماكسيم مسؤول الأعضاء</div>
-<div class="card" data-type="leaders">☠ فيكتور ماكسيم عضو</div>
-
-<div class="card big" data-type="gangs">☠ العصابات المتحالفة</div>
-<div class="card" data-type="gangs">☠ سكراب</div>
-
-<div class="card big" data-type="house">☠ البيوت</div>
-<div class="card" data-type="house">قائمة البيوت</div>
-<div class="card big" data-type="house-gun">☠ Houses Guns</div>
-<div class="card" data-type="house-gun">قائمة الأسلحة في البيوت</div>
-
-<div class="card big" data-type="chat">☠ الدردشة</div>
-<div class="card" data-type="chat">
-    <div id="chatMessages"></div>
-    <input type="text" id="chatInput" placeholder="اكتب رسالة...">
-    <input type="file" id="chatImage">
-    <button onclick="sendMessage()">إرسال</button>
+<!-- الإعلانات -->
+<div class="card big" data-type="announcements">
+    <div id="adminAnnouncementArea"></div>
+    <textarea id="announcementInput" placeholder="أضف إعلان جديد..."></textarea>
+    <button class="sendBtn" onclick="sendAnnouncement()">إرسال</button>
 </div>
 
 </div>
 </div>
-
-<audio id="bgMusic" loop>
-    <source src="mafia1.mp3" type="audio/mpeg">
-</audio>
 
 <script>
+// عناصر
 const username = document.getElementById("username");
 const password = document.getElementById("password");
 const error = document.getElementById("error");
@@ -252,104 +239,109 @@ const content = document.getElementById("content");
 const header = document.getElementById("header");
 const userDisplay = document.getElementById("userDisplay");
 const menu = document.getElementById("menu");
-const chatMessages = document.getElementById("chatMessages");
+
+// الدردشة والإعلانات
+const chatArea = document.getElementById("chatArea");
 const chatInput = document.getElementById("chatInput");
-const chatImage = document.getElementById("chatImage");
-const bgMusic = document.getElementById("bgMusic");
+const adminAnnouncementArea = document.getElementById("adminAnnouncementArea");
+const announcementInput = document.getElementById("announcementInput");
 
-let currentUser = null;
-let isAdmin = false;
-let muted = false;
-
+// الحسابات
 const ACCOUNTS = [
-    {user:"b", pass:"1234"},
-    {user:"ايفان", pass:"8989"},
-    {user:"اليكس", pass:"ba95"},
-    {user:"ديمتري", pass:"more11"},
-    {user:"عضو", pass:"1111"}
+    {user:"b", pass:"b", admin:true},
+    {user:"ايفان", pass:"8989", admin:true},
+    {user:"بيتر", pass:"2008", admin:false},
+    {user:"ايفان2", pass:"1234", admin:false}
 ];
 
-let DATA = {
-    weapons: ["AK-47","Deagle"],
-    leaders: ["ايفان ماكسيم","بيتر ماكسيم","اليكس ماكسيم","ديمتري ماكسيم","فيكتور ماكسيم"],
-    gangs: ["سكراب"],
-    house: ["قائمة البيوت"],
-    houseGun: ["قائمة الأسلحة في البيوت"],
-    chat: []
-};
+// بيانات محفوظة
+let chatMessages = JSON.parse(localStorage.getItem("chatMessages") || "[]");
+let announcements = JSON.parse(localStorage.getItem("announcements") || "[]");
+let currentUser = null;
 
 function login(){
     const u = username.value.trim();
     const p = password.value.trim();
     const acc = ACCOUNTS.find(a=>a.user===u && a.pass===p);
-    if(!acc){ error.style.display="block"; return; }
 
-    currentUser = acc.user;
-    isAdmin = (currentUser==="b" || currentUser==="ايفان");
+    if(!acc){
+        error.style.display="block";
+        return;
+    }
 
-    bgMusic.volume=0.4;
-    bgMusic.play();
-
+    currentUser = acc;
     loginDiv.style.opacity="0";
     setTimeout(()=>{
         loginDiv.style.display="none";
         content.style.display="block";
         header.style.display="block";
-        userDisplay.innerText=currentUser;
-        showSection('welcome');
-    },600);
+        userDisplay.innerText = acc.user;
 
-function toggleMenu(){ menu.style.display = menu.style.display==="block" ? "none":"block"; }
+        showSection('welcome');
+
+        renderChat();
+        renderAnnouncements();
+    },600);
+}
+
+function toggleMenu(){
+    menu.style.display = menu.style.display==="block"?"none":"block";
+}
 
 function showSection(type){
     document.querySelectorAll(".card").forEach(c=>{
-        c.style.display="none";
-        const cType = c.dataset.type;
-
-        if((cType==="house" || cType==="house-gun") && !isAdmin) return;
-
-        if(cType===type) c.style.display="block";
+        if(c.dataset.type===type){
+            if(type==="announcements" && !currentUser.admin){
+                c.style.display="none";
+            } else {
+                c.style.display="block";
+            }
+        }else c.style.display="none";
     });
     menu.style.display="none";
 }
 
-function sendMessage(){
-    let text = chatInput.value.trim();
-    let file = chatImage.files[0];
-
-    if(!text && !file) return;
-
-    let msgDiv = document.createElement("div");
-    msgDiv.style.margin="5px 0";
-    msgDiv.innerHTML = `<b>${currentUser}:</b> ${text}`;
-
-    if(file){
-        const reader = new FileReader();
-        reader.onload = function(e){
-            let img = document.createElement("img");
-            img.src = e.target.result;
-            img.style.maxWidth="100px";
-            img.style.display="block";
-            msgDiv.appendChild(img);
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-        reader.readAsDataURL(file);
-    } else {
-        chatMessages.appendChild(msgDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
+// إرسال الدردشة
+function sendChat(){
+    const msg = chatInput.value.trim();
+    if(!msg) return;
+    chatMessages.push({user:currentUser.user, msg});
+    localStorage.setItem("chatMessages", JSON.stringify(chatMessages));
     chatInput.value="";
-    chatImage.value="";
-    DATA.chat.push({user:currentUser,text:text,image:file?file.name:""});
+    renderChat();
 }
 
-function toggleMute(){
-    muted = !muted;
-    bgMusic.muted = muted;
+function renderChat(){
+    chatArea.innerHTML="";
+    chatMessages.forEach(m=>{
+        const div = document.createElement("div");
+        div.className="message";
+        div.innerText=`${m.user}: ${m.msg}`;
+        chatArea.appendChild(div);
+    });
+    chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+// إرسال الإعلانات (ادمن فقط)
+function sendAnnouncement(){
+    if(!currentUser.admin) return;
+    const msg = announcementInput.value.trim();
+    if(!msg) return;
+    announcements.push({user:currentUser.user, msg});
+    localStorage.setItem("announcements", JSON.stringify(announcements));
+    announcementInput.value="";
+    renderAnnouncements();
+}
+
+function renderAnnouncements(){
+    adminAnnouncementArea.innerHTML="";
+    announcements.forEach(a=>{
+        const div = document.createElement("div");
+        div.className="message";
+        div.innerText=`${a.user}: ${a.msg}`;
+        adminAnnouncementArea.appendChild(div);
+    });
 }
 </script>
-
 </body>
 </html>
