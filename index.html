@@ -12,84 +12,148 @@ body{
     background-size: cover;
     color:#eee;
 }
+
+/* شاشة تسجيل الدخول */
 #login{
-    position:fixed; inset:0;
+    position:fixed;
+    inset:0;
     background:#0a0a0a;
-    display:flex; justify-content:center; align-items:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     z-index:9999;
     transition:opacity .6s;
 }
 .login-box{
-    background:#140022; border:1px solid #7a2cff; border-radius:20px;
-    padding:30px; width:280px; text-align:center; box-shadow:0 0 25px #3a0070;
+    background:#140022;
+    border:1px solid #7a2cff;
+    border-radius:20px;
+    padding:30px;
+    width:280px;
+    text-align:center;
+    box-shadow:0 0 25px #3a0070;
 }
 .login-box input{
-    width:100%; margin:8px 0; padding:10px; border-radius:12px;
-    border:none; outline:none;
+    width:100%;
+    margin:8px 0;
+    padding:10px;
+    border-radius:12px;
+    border:none;
+    outline:none;
 }
 .login-box button{
-    margin-top:12px; padding:12px; width:100%; border:none;
-    border-radius:15px; background:#7a2cff; color:#fff; cursor:pointer;
+    margin-top:12px;
+    padding:12px;
+    width:100%;
+    border:none;
+    border-radius:15px;
+    background:#7a2cff;
+    color:#fff;
+    cursor:pointer;
 }
 #error{
-    color:#ff5c5c; display:none; margin-top:8px;
+    color:#ff5c5c;
+    display:none;
+    margin-top:8px;
 }
-header{display:none; position:fixed; top:20px; right:20px; z-index:999;}
+
+/* زر القائمة */
+header{
+    display:none;
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:999;
+}
 header button{
-    background:#7a2cff; color:#fff; border:none;
-    font-size:1.8em; padding:10px 14px; border-radius:10px; cursor:pointer;
+    background:#7a2cff;
+    color:#fff;
+    border:none;
+    font-size:1.8em;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
 }
+
+/* القائمة */
 #menu{
-    display:none; position:fixed; top:80px; right:20px;
-    background:#12001f; padding:12px; border-radius:15px;
-    box-shadow:0 0 20px #3a0070; z-index:998;
+    display:none;
+    position:fixed;
+    top:80px;
+    right:20px;
+    background:#12001f;
+    padding:12px;
+    border-radius:15px;
+    box-shadow:0 0 20px #3a0070;
+    z-index:998;
 }
 #menu button{
-    display:block; width:100%; margin:6px 0; padding:10px;
-    border:none; border-radius:12px; background:#7a2cff; color:#fff; cursor:pointer;
+    display:block;
+    width:100%;
+    margin:6px 0;
+    padding:10px;
+    border:none;
+    border-radius:12px;
+    background:#7a2cff;
+    color:#fff;
+    cursor:pointer;
 }
-#content{display:none; padding:100px 15px 20px;}
+
+/* محتوى الموقع */
+#content{
+    display:none;
+    padding:100px 15px 20px;
+}
 .cards{
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:15px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:15px;
 }
 .card{
     background:linear-gradient(135deg,rgba(122,44,255,.35),rgba(20,0,34,.8));
-    border:1px solid #7a2cff; border-radius:18px; padding:20px;
-    text-align:center; display:none; position:relative;
+    border:1px solid #7a2cff;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    display:none;
 }
-.big{grid-column:1/-1;}
-.welcome{background:linear-gradient(135deg,rgba(122,44,255,.35),rgba(20,0,34,.8));
-text-shadow:0 0 10px rgba(122,44,255,.8);}
-.welcome-title{font-size:1.6em; margin-bottom:10px; letter-spacing:1px;}
-.welcome-name{color:#caa6ff; font-weight:bold;}
-.welcome-motto{margin-top:12px; font-size:1.1em; opacity:.9; letter-spacing:1px;}
-.post-img{max-width:100%; margin-top:8px; border-radius:10px;}
-.post-btn{
-    position:absolute; top:10px; right:10px; background:#7a2cff;
-    color:#fff; border:none; padding:4px 8px; margin-left:4px; cursor:pointer;
-    border-radius:5px; font-size:0.8em;
+.big{
+    grid-column:1/-1;
 }
-.notifications{
-    position:fixed; bottom:20px; left:20px;
-    background:#7a2cff; color:#fff; padding:10px 15px;
-    border-radius:10px; box-shadow:0 0 10px #3a0070; display:none; z-index:9999;
+.welcome{
+    text-shadow:0 0 10px rgba(122,44,255,.8);
 }
-#muteBtn{
-    position:fixed; top:20px; left:20px;
-    background:#7a2cff; color:#fff; border:none; padding:10px;
-    border-radius:10px; cursor:pointer;
+.welcome-title{
+    font-size:1.6em;
+    margin-bottom:10px;
 }
-.addSection{
-    margin-top:10px; display:flex; gap:5px;
+.welcome-name{
+    color:#caa6ff;
+    font-weight:bold;
 }
-.addSection input{flex:1; padding:6px; border-radius:5px; border:none;}
-.addSection button{
-    padding:6px 10px; border:none; border-radius:5px; background:#7a2cff; color:#fff; cursor:pointer;
+.welcome-motto{
+    margin-top:12px;
+    font-size:1.1em;
+    opacity:.9;
 }
+
+/* أزرار التحكم داخل الكارد */
+.card button{
+    margin-top:6px;
+    padding:6px 10px;
+    font-size:0.9em;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+.btn-edit{background:#ffaa00;color:#000;}
+.btn-delete{background:#ff4444;color:#fff;}
+.btn-add{background:#44ff44;color:#000;}
 </style>
 </head>
 <body>
 
+<!-- تسجيل الدخول -->
 <div id="login">
     <div class="login-box">
         <h2>☠ تسجيل الدخول</h2>
@@ -100,9 +164,13 @@ text-shadow:0 0 10px rgba(122,44,255,.8);}
     </div>
 </div>
 
-<header id="header"><button onclick="toggleMenu()">≡</button></header>
-<button id="muteBtn" onclick="toggleMute()">🔇</button>
+<!-- زر القائمة -->
+<header id="header">
+    <button onclick="toggleMenu()">≡</button>
+    <button onclick="toggleMusic()">🔇</button>
+</header>
 
+<!-- القائمة -->
 <div id="menu">
     <button onclick="showSection('welcome')">☠ الترحيب</button>
     <button onclick="showSection('laws')">☠ القوانين</button>
@@ -111,192 +179,232 @@ text-shadow:0 0 10px rgba(122,44,255,.8);}
     <button onclick="showSection('gangs')">☠ العصابات</button>
     <button onclick="showSection('house')">☠ البيوت</button>
     <button onclick="showSection('house-gun')">☠ houses guns</button>
-    <button onclick="showSection('chat')">💬 دردشة</button>
+    <button onclick="showSection('chat')">☠ دردشة</button>
 </div>
 
+<!-- المحتوى -->
 <div id="content">
 <div class="cards" id="cardsContainer">
-<div class="card big welcome" data-type="welcome">
-    <div class="welcome-title">☠ أهلاً بك <span class="welcome-name" id="userDisplay">عضو</span></div>
-    <div>في عالم المافيا الروسية</div>
-    <div class="welcome-motto">☠ الولاء قبل الدم ☠<br>من يخون يُمحى… ومن يخلص يُرفع</div>
-</div>
+    <!-- الترحيب -->
+    <div class="card big welcome" data-type="welcome">
+        <div class="welcome-title">
+            ☠ أهلاً بك <span class="welcome-name" id="userDisplay">عضو</span>
+        </div>
+        <div>
+            في عالم المافيا الروسية
+        </div>
+        <div class="welcome-motto">
+            ☠ الولاء قبل الدم ☠<br>
+            من يخون يُمحى… ومن يخلص يُرفع
+        </div>
+    </div>
 </div>
 </div>
 
-<div id="chatContainer" style="display:none; padding:80px 15px;">
-    <h3>💬 الدردشة</h3>
-    <div id="chatMessages" style="margin-bottom:10px;"></div>
-    <input id="chatInput" placeholder="اكتب رسالتك هنا..." style="width:70%; padding:8px; border-radius:6px; border:none; outline:none;">
-    <input type="file" id="chatImage" style="width:20%; padding:8px;">
-    <button onclick="sendMessage()">إرسال</button>
-</div>
-
-<div class="notifications" id="notif"></div>
-
+<!-- الموسيقى -->
 <audio id="bgMusic" loop>
-    <source src="mafia.mp3" type="audio/mpeg">
+    <source src="mafia1.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const username = document.getElementById("username");
-const password = document.getElementById("password");
-const error = document.getElementById("error");
-const loginDiv = document.getElementById("login");
-const content = document.getElementById("content");
-const header = document.getElementById("header");
-const userDisplay = document.getElementById("userDisplay");
-const menu = document.getElementById("menu");
-const notif = document.getElementById("notif");
-const chatContainer = document.getElementById("chatContainer");
-const chatMessages = document.getElementById("chatMessages");
-const chatInput = document.getElementById("chatInput");
-const chatImage = document.getElementById("chatImage");
-const muteBtn = document.getElementById("muteBtn");
-const music = document.getElementById("bgMusic");
-const cardsContainer = document.getElementById("cardsContainer");
-
-let currentUser = null;
-let isMuted = false;
-
+// --- بيانات الحسابات ---
 const ACCOUNTS = [
-    {user:"b", pass:"b", admin:true},
-    {user:"ايفان", pass:"8989", admin:true},
-    {user:"BA95", pass:"ba95", admin:false},
-    {user:"ديمتري", pass:"more11", admin:false}
+    {user:"b", pass:"b", role:"admin"},
+    {user:"ايفان", pass:"8989", role:"admin"},
+    {user:"BA95", pass:"ba95", role:"member"},
+    {user:"ديمتري", pass:"more11", role:"member"},
+    {user:"SAYO", pass:"Mister C 1", role:"member"}
 ];
 
-const defaultData = {
-    weapons: ["AK-47","Deagle","C4","Glock 20"],
-    gangs: ["سكراب"],
-    house: ["Soon..."],
-    "house-gun": ["Soon..."],
-    chat: [],
-    laws:["تنفيذ الأوامر بدون نقاش"]
+let currentUser = null;
+
+// بيانات افتراضية لكل القوائم
+let data = {
+    weapons:["AK-47","Deagle","C4","Glock 20"],
+    leaders:["مسؤول المافيا مجهول الهوية","نائب مسؤول المافيا","ايفان ماكسيم مساعد مسؤول"],
+    gangs:["سكراب","لا يوجد"],
+    house:["بيت 1","بيت 2"],
+    "house-gun":["Glock 18","M4A1"],
+    chat:[]
 };
 
-let DATA = JSON.parse(localStorage.getItem("mafiaData")) || defaultData;
+// حفظ البيانات تلقائياً للـ GitHub Pages (محاكاة التخزين)
+function saveData(){
+    localStorage.setItem("mafiaData", JSON.stringify(data));
+}
+function loadData(){
+    const saved = localStorage.getItem("mafiaData");
+    if(saved) data = JSON.parse(saved);
+}
 
-function saveData(){ localStorage.setItem("mafiaData", JSON.stringify(DATA)); }
-function showNotif(msg){ notif.innerText = msg; notif.style.display="block"; setTimeout(()=>notif.style.display="none",2000); }
-
+// --- تسجيل الدخول ---
 function login(){
-    const u = username.value.trim();
-    const p = password.value.trim();
+    const u = document.getElementById("username").value.trim();
+    const p = document.getElementById("password").value.trim();
     const acc = ACCOUNTS.find(a=>a.user===u && a.pass===p);
-    if(!acc){ error.style.display="block"; return; }
+    if(!acc){
+        document.getElementById("error").style.display="block";
+        return;
+    }
     currentUser = acc;
-    music.volume=0.4;
-    if(!isMuted) music.play();
-    loginDiv.style.display="none"; content.style.display="block"; header.style.display="block";
-    userDisplay.innerText=acc.user;
-    renderAll();
-    showSection('welcome');
+    document.getElementById("userDisplay").innerText = acc.user;
+    document.getElementById("login").style.opacity="0";
+    setTimeout(()=>{
+        document.getElementById("login").style.display="none";
+        document.getElementById("content").style.display="block";
+        document.getElementById("header").style.display="block";
+        showSection('welcome');
+        loadData();
+    },600);
+    document.getElementById("bgMusic").volume=0.4;
+    document.getElementById("bgMusic").play();
 }
 
-function toggleMenu(){menu.style.display=menu.style.display==="block"?"none":"block";}
-function toggleMute(){isMuted=!isMuted; if(isMuted) music.pause(); else music.play();}
-
+// --- القوائم ---
+function toggleMenu(){
+    const menu = document.getElementById("menu");
+    menu.style.display = menu.style.display==="block"?"none":"block";
+}
 function showSection(type){
-    document.querySelectorAll(".card").forEach(c=>c.style.display="none");
-    chatContainer.style.display = type==="chat"?"block":"none";
-    if(type!=="chat"){
-        renderSection(type);
+    const container = document.getElementById("cardsContainer");
+    container.innerHTML=""; // مسح القديم
+
+    if(type==="welcome"){
+        const div = document.createElement("div");
+        div.className="card big welcome";
+        div.innerHTML=`<div class="welcome-title">☠ أهلاً بك <span class="welcome-name">${currentUser.user}</span></div>
+        <div>في عالم المافيا الروسية</div>
+        <div class="welcome-motto">☠ الولاء قبل الدم ☠<br>من يخون يُمحى… ومن يخلص يُرفع</div>`;
+        container.appendChild(div);
+    } else if(type==="chat"){
+        showChat(container);
+    } else {
+        showList(container,type);
     }
+    document.getElementById("menu").style.display="none";
 }
 
-function renderSection(type){
-    cardsContainer.innerHTML="";
-    if(DATA[type]){
-        DATA[type].forEach((item,i)=>{
-            const card = document.createElement("div");
-            card.className="card"; card.dataset.type=type;
-            let text="", img="";
-            if(typeof item==="string") text=item;
-            else{text=item.text||""; img=item.img||"";}
-            card.innerHTML=`<span>${text}</span>`;
-            if(img) card.innerHTML+=`<img src="${img}" class="post-img">`;
-            if(currentUser.admin){
-                const editBtn=document.createElement("button");
-                editBtn.className="post-btn"; editBtn.innerText="تعديل";
-                editBtn.onclick=()=>editItem(type,i);
-                card.appendChild(editBtn);
-                const delBtn=document.createElement("button");
-                delBtn.className="post-btn"; delBtn.innerText="حذف";
-                delBtn.style.right="60px";
-                delBtn.onclick=()=>{DATA[type].splice(i,1); saveData(); renderSection(type); showNotif("تم الحذف");};
-                card.appendChild(delBtn);
-            }
-            cardsContainer.appendChild(card);
-        });
-        if(currentUser.admin){
-            const addDiv=document.createElement("div");
-            addDiv.className="addSection";
-            addDiv.innerHTML=`<input placeholder="أدخل جديد..." type="text"><input type="file"><button>إضافة</button>`;
-            const input = addDiv.children[0]; const file = addDiv.children[1]; const btn=addDiv.children[2];
-            btn.onclick=()=>{
-                let newItem={text:input.value};
-                if(file.files[0]){
-                    const reader=new FileReader();
-                    reader.onload=()=>{newItem.img=reader.result; DATA[type].push(newItem); saveData(); renderSection(type); showNotif("تم الإضافة");};
-                    reader.readAsDataURL(file.files[0]);
-                } else{DATA[type].push(newItem.text); saveData(); renderSection(type); showNotif("تم الإضافة");}
-                input.value=""; file.value="";
-            };
-            cardsContainer.appendChild(addDiv);
-        }
+// --- عرض القوائم ---
+function showList(container,type){
+    if((type==="house" || type==="house-gun") && currentUser.role!=="admin") return;
+
+    const list = data[type];
+    const big = document.createElement("div");
+    big.className="card big";
+    big.textContent=`☠ ${type}`;
+    container.appendChild(big);
+
+    if(currentUser.role==="admin"){
+        const addBtn = document.createElement("button");
+        addBtn.textContent="➕ إضافة";
+        addBtn.className="btn-add";
+        addBtn.onclick=()=>addItem(type);
+        big.appendChild(addBtn);
     }
-}
 
-function editItem(type,index){
-    let item = DATA[type][index];
-    let newText = prompt("عدّل النص:", typeof item==="string"?item:item.text||"");
-    if(newText===null) return;
-    if(typeof item==="string") DATA[type][index]=newText;
-    else DATA[type][index].text=newText;
-    saveData(); renderSection(type); showNotif("تم التعديل");
-}
+    list.forEach((item,index)=>{
+        const div = document.createElement("div");
+        div.className="card";
+        div.textContent=item;
 
-function sendMessage(){
-    const text=chatInput.value.trim();
-    const file=chatImage.files[0];
-    if(!text && !file){alert("اكتب رسالة أو اختر صورة"); return;}
-    let msg={user:currentUser.user, admin:currentUser.admin, text:"", img:""};
-    msg.text=text;
-    if(file){
-        const reader=new FileReader();
-        reader.onload=()=>{
-            msg.img=reader.result;
-            DATA.chat.push(msg); saveData(); renderChat(); chatInput.value=""; chatImage.value=""; showNotif("تم الإرسال");
-        };
-        reader.readAsDataURL(file);
-    } else{
-        DATA.chat.push(msg); saveData(); renderChat(); chatInput.value=""; showNotif("تم الإرسال");
-    }
-}
+        if(currentUser.role==="admin"){
+            const editBtn = document.createElement("button");
+            editBtn.textContent="✏️";
+            editBtn.className="btn-edit";
+            editBtn.onclick=()=>editItem(type,index);
+            div.appendChild(editBtn);
 
-function renderChat(){
-    chatMessages.innerHTML="";
-    DATA.chat.forEach((m,i)=>{
-        const div=document.createElement("div");
-        div.style.border="1px solid #7a2cff"; div.style.borderRadius="10px";
-        div.style.margin="5px 0"; div.style.padding="5px";
-        div.innerHTML=`<b>${m.user}${m.admin?" (أدمن)":""}:</b> ${m.text}`;
-        if(m.img) div.innerHTML+=`<br><img src="${m.img}" class="post-img">`;
-        if(currentUser.admin || m.user===currentUser.user){
-            const delBtn=document.createElement("button");
-            delBtn.className="post-btn"; delBtn.innerText="حذف";
-            delBtn.onclick=()=>{DATA.chat.splice(i,1); saveData(); renderChat(); showNotif("تم الحذف");};
+            const delBtn = document.createElement("button");
+            delBtn.textContent="🗑️";
+            delBtn.className="btn-delete";
+            delBtn.onclick=()=>deleteItem(type,index);
             div.appendChild(delBtn);
         }
-        chatMessages.appendChild(div);
+        container.appendChild(div);
     });
 }
 
-function renderAll(){
-    ["weapons","gangs","house","house-gun","laws"].forEach(t=>{if(!DATA[t]) DATA[t]=[];});
-    renderChat();
+// --- إدارة البيانات ---
+function addItem(type){
+    const val = prompt("أدخل العنصر الجديد:");
+    if(val){
+        data[type].push(val);
+        saveData();
+        showSection(type);
+        alert("تم الإضافة ✅");
+    }
+}
+function editItem(type,index){
+    const val = prompt("تعديل:", data[type][index]);
+    if(val!==null){
+        data[type][index]=val;
+        saveData();
+        showSection(type);
+        alert("تم التعديل ✅");
+    }
+}
+function deleteItem(type,index){
+    if(confirm("هل تريد الحذف؟")){
+        data[type].splice(index,1);
+        saveData();
+        showSection(type);
+        alert("تم الحذف ✅");
+    }
+}
+
+// --- دردشة ---
+function showChat(container){
+    const big = document.createElement("div");
+    big.className="card big";
+    big.textContent="☠ دردشة";
+    container.appendChild(big);
+
+    if(currentUser.role==="admin"){
+        const addBtn = document.createElement("button");
+        addBtn.textContent="➕ نشر رسالة";
+        addBtn.className="btn-add";
+        addBtn.onclick=()=>postMessage();
+        big.appendChild(addBtn);
+    }
+
+    data.chat.forEach((msg,index)=>{
+        const div = document.createElement("div");
+        div.className="card";
+        div.innerHTML=`<strong>${msg.user}</strong>: ${msg.text}`;
+        if(currentUser.role==="admin" || msg.user===currentUser.user){
+            const delBtn = document.createElement("button");
+            delBtn.textContent="🗑️";
+            delBtn.className="btn-delete";
+            delBtn.onclick=()=>{
+                if(confirm("هل تريد حذف الرسالة؟")){
+                    data.chat.splice(index,1);
+                    saveData();
+                    showSection("chat");
+                    alert("تم الحذف ✅");
+                }
+            };
+            div.appendChild(delBtn);
+        }
+        container.appendChild(div);
+    });
+}
+
+// --- نشر رسالة ---
+function postMessage(){
+    const text = prompt("اكتب رسالتك:");
+    if(text){
+        data.chat.push({user:currentUser.user,text});
+        saveData();
+        showSection("chat");
+    }
+}
+
+// --- كتم الموسيقى ---
+function toggleMusic(){
+    const music = document.getElementById("bgMusic");
+    music.muted = !music.muted;
 }
 </script>
+
 </body>
 </html>
