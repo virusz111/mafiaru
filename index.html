@@ -13,7 +13,6 @@ body{
     color:#eee;
 }
 
-/* شاشة تسجيل الدخول */
 #login{
     position:fixed;
     inset:0;
@@ -57,7 +56,6 @@ body{
     margin-top:8px;
 }
 
-/* زر القائمة */
 header{
     display:none;
     position:fixed;
@@ -75,7 +73,6 @@ header button{
     cursor:pointer;
 }
 
-/* القائمة */
 #menu{
     display:none;
     position:fixed;
@@ -98,7 +95,6 @@ header button{
     color:#fff;
 }
 
-/* المحتوى */
 #content{
     display:none;
     padding:100px 15px 20px;
@@ -139,7 +135,6 @@ header button{
     letter-spacing:1px;
 }
 
-/* الدردشة */
 #chat{
     margin-top:20px;
 }
@@ -172,7 +167,6 @@ header button{
 </head>
 <body>
 
-<!-- تسجيل الدخول -->
 <div id="login">
     <div class="login-box">
         <h2>☠ تسجيل الدخول</h2>
@@ -183,7 +177,6 @@ header button{
     </div>
 </div>
 
-<!-- زر القائمة -->
 <header id="header">
     <button onclick="toggleMenu()">≡</button>
     <button onclick="toggleMute()">🔇</button>
@@ -201,11 +194,9 @@ header button{
     <button onclick="showSection('chat')">☠ الدردشة</button>
 </div>
 
-<!-- المحتوى -->
 <div id="content">
 <div class="cards">
 
-<!-- الترحيب -->
 <div class="card big welcome" data-type="welcome">
     <div class="welcome-title">
         ☠ أهلاً بك <span class="welcome-name" id="userDisplay">عضو</span>
@@ -216,15 +207,12 @@ header button{
     </div>
 </div>
 
-<!-- القوانين -->
 <div class="card big" data-type="laws">☠ قوانين المافيا</div>
 <div class="card" data-type="laws">☠ تنفيذ الأوامر بدون نقاش</div>
 
-<!-- الأسلحة -->
 <div class="card big" data-type="weapons">☠ الأسلحة</div>
 <div class="card" data-type="weapons">☠ AK-47</div>
 
-<!-- المسؤولين و الأعضاء -->
 <div class="card big" data-type="leaders">☠ المسؤولين و الأعضاء</div>
 <div class="card" data-type="leaders">☠ ايفان ماكسيم مساعد مسؤول</div>
 <div class="card" data-type="leaders">☠ بيتر ماكسيم مساعد مسؤول</div>
@@ -232,17 +220,14 @@ header button{
 <div class="card" data-type="leaders">☠ ديمتري ماكسيم مسؤول الأعضاء</div>
 <div class="card" data-type="leaders">☠ فيكتور ماكسيم عضو</div>
 
-<!-- العصابات -->
 <div class="card big" data-type="gangs">☠ العصابات المتحالفة</div>
 <div class="card" data-type="gangs">☠ سكراب</div>
 
-<!-- البيوت House & House Guns -->
 <div class="card big" data-type="house">☠ البيوت</div>
 <div class="card" data-type="house">قائمة البيوت</div>
 <div class="card big" data-type="house-gun">☠ Houses Guns</div>
 <div class="card" data-type="house-gun">قائمة الأسلحة في البيوت</div>
 
-<!-- الدردشة -->
 <div class="card big" data-type="chat">☠ الدردشة</div>
 <div class="card" data-type="chat">
     <div id="chatMessages"></div>
@@ -254,13 +239,11 @@ header button{
 </div>
 </div>
 
-<!-- الموسيقى -->
 <audio id="bgMusic" loop>
     <source src="mafia1.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-// عناصر
 const username = document.getElementById("username");
 const password = document.getElementById("password");
 const error = document.getElementById("error");
@@ -278,7 +261,6 @@ let currentUser = null;
 let isAdmin = false;
 let muted = false;
 
-// الحسابات
 const ACCOUNTS = [
     {user:"b", pass:"1234"},
     {user:"ايفان", pass:"8989"},
@@ -287,7 +269,6 @@ const ACCOUNTS = [
     {user:"عضو", pass:"1111"}
 ];
 
-// بيانات لكل القوائم
 let DATA = {
     weapons: ["AK-47","Deagle"],
     leaders: ["ايفان ماكسيم","بيتر ماكسيم","اليكس ماكسيم","ديمتري ماكسيم","فيكتور ماكسيم"],
@@ -297,7 +278,6 @@ let DATA = {
     chat: []
 };
 
-// تسجيل الدخول
 function login(){
     const u = username.value.trim();
     const p = password.value.trim();
@@ -318,18 +298,14 @@ function login(){
         userDisplay.innerText=currentUser;
         showSection('welcome');
     },600);
-}
 
-// القائمة
 function toggleMenu(){ menu.style.display = menu.style.display==="block" ? "none":"block"; }
 
-// عرض القوائم مع صلاحيات الادمن
 function showSection(type){
     document.querySelectorAll(".card").forEach(c=>{
         c.style.display="none";
         const cType = c.dataset.type;
 
-        // House & HouseGun فقط للادمن
         if((cType==="house" || cType==="house-gun") && !isAdmin) return;
 
         if(cType===type) c.style.display="block";
@@ -337,7 +313,6 @@ function showSection(type){
     menu.style.display="none";
 }
 
-// ارسال رسالة في الدردشة
 function sendMessage(){
     let text = chatInput.value.trim();
     let file = chatImage.files[0];
@@ -370,7 +345,6 @@ function sendMessage(){
     DATA.chat.push({user:currentUser,text:text,image:file?file.name:""});
 }
 
-// كتم/تشغيل الموسيقى
 function toggleMute(){
     muted = !muted;
     bgMusic.muted = muted;
