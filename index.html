@@ -12,177 +12,84 @@ body{
     background-size: cover;
     color:#eee;
 }
-/* شاشة تسجيل الدخول */
 #login{
-    position:fixed;
-    inset:0;
+    position:fixed; inset:0;
     background:#0a0a0a;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display:flex; justify-content:center; align-items:center;
     z-index:9999;
     transition:opacity .6s;
 }
 .login-box{
-    background:#140022;
-    border:1px solid #7a2cff;
-    border-radius:20px;
-    padding:30px;
-    width:280px;
-    text-align:center;
-    box-shadow:0 0 25px #3a0070;
+    background:#140022; border:1px solid #7a2cff; border-radius:20px;
+    padding:30px; width:280px; text-align:center; box-shadow:0 0 25px #3a0070;
 }
 .login-box input{
-    width:100%;
-    margin:8px 0;
-    padding:10px;
-    border-radius:12px;
-    border:none;
-    outline:none;
+    width:100%; margin:8px 0; padding:10px; border-radius:12px;
+    border:none; outline:none;
 }
 .login-box button{
-    margin-top:12px;
-    padding:12px;
-    width:100%;
-    border:none;
-    border-radius:15px;
-    background:#7a2cff;
-    color:#fff;
-    cursor:pointer;
+    margin-top:12px; padding:12px; width:100%; border:none;
+    border-radius:15px; background:#7a2cff; color:#fff; cursor:pointer;
 }
 #error{
-    color:#ff5c5c;
-    display:none;
-    margin-top:8px;
+    color:#ff5c5c; display:none; margin-top:8px;
 }
-/* زر القائمة */
-header{
-    display:none;
-    position:fixed;
-    top:20px;
-    right:20px;
-    z-index:999;
-}
+header{display:none; position:fixed; top:20px; right:20px; z-index:999;}
 header button{
-    background:#7a2cff;
-    color:#fff;
-    border:none;
-    font-size:1.8em;
-    padding:10px 14px;
-    border-radius:10px;
-    cursor:pointer;
+    background:#7a2cff; color:#fff; border:none;
+    font-size:1.8em; padding:10px 14px; border-radius:10px; cursor:pointer;
 }
-/* القائمة */
 #menu{
-    display:none;
-    position:fixed;
-    top:80px;
-    right:20px;
-    background:#12001f;
-    padding:12px;
-    border-radius:15px;
-    box-shadow:0 0 20px #3a0070;
-    z-index:998;
+    display:none; position:fixed; top:80px; right:20px;
+    background:#12001f; padding:12px; border-radius:15px;
+    box-shadow:0 0 20px #3a0070; z-index:998;
 }
 #menu button{
-    display:block;
-    width:100%;
-    margin:6px 0;
-    padding:10px;
-    border:none;
-    border-radius:12px;
-    background:#7a2cff;
-    color:#fff;
+    display:block; width:100%; margin:6px 0; padding:10px;
+    border:none; border-radius:12px; background:#7a2cff; color:#fff; cursor:pointer;
 }
-/* المحتوى */
-#content{
-    display:none;
-    padding:100px 15px 20px;
-}
+#content{display:none; padding:100px 15px 20px;}
 .cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-    gap:15px;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:15px;
 }
 .card{
     background:linear-gradient(135deg,rgba(122,44,255,.35),rgba(20,0,34,.8));
-    border:1px solid #7a2cff;
-    border-radius:18px;
-    padding:20px;
-    text-align:center;
-    display:none;
-    position:relative;
+    border:1px solid #7a2cff; border-radius:18px; padding:20px;
+    text-align:center; display:none; position:relative;
 }
-.big{
-    grid-column:1/-1;
-}
-.welcome{
-    background:linear-gradient(135deg,rgba(122,44,255,.35),rgba(20,0,34,.8));
-    text-shadow:0 0 10px rgba(122,44,255,.8);
-}
-.welcome-title{
-    font-size:1.6em;
-    margin-bottom:10px;
-    letter-spacing:1px;
-}
-.welcome-name{
-    color:#caa6ff;
-    font-weight:bold;
-}
-.welcome-motto{
-    margin-top:12px;
-    font-size:1.1em;
-    opacity:.9;
-    letter-spacing:1px;
-}
-/* منشورات الصور */
-.post-img{
-    max-width:100%;
-    margin-top:8px;
-    border-radius:10px;
-}
-/* أزرار تعديل وحذف */
+.big{grid-column:1/-1;}
+.welcome{background:linear-gradient(135deg,rgba(122,44,255,.35),rgba(20,0,34,.8));
+text-shadow:0 0 10px rgba(122,44,255,.8);}
+.welcome-title{font-size:1.6em; margin-bottom:10px; letter-spacing:1px;}
+.welcome-name{color:#caa6ff; font-weight:bold;}
+.welcome-motto{margin-top:12px; font-size:1.1em; opacity:.9; letter-spacing:1px;}
+.post-img{max-width:100%; margin-top:8px; border-radius:10px;}
 .post-btn{
-    position:absolute;
-    top:10px;
-    right:10px;
-    background:#7a2cff;
-    color:#fff;
-    border:none;
-    padding:4px 8px;
-    margin-left:4px;
-    cursor:pointer;
-    border-radius:5px;
-    font-size:0.8em;
+    position:absolute; top:10px; right:10px; background:#7a2cff;
+    color:#fff; border:none; padding:4px 8px; margin-left:4px; cursor:pointer;
+    border-radius:5px; font-size:0.8em;
 }
 .notifications{
-    position:fixed;
-    bottom:20px;
-    left:20px;
-    background:#7a2cff;
-    color:#fff;
-    padding:10px 15px;
-    border-radius:10px;
-    box-shadow:0 0 10px #3a0070;
-    display:none;
-    z-index:9999;
+    position:fixed; bottom:20px; left:20px;
+    background:#7a2cff; color:#fff; padding:10px 15px;
+    border-radius:10px; box-shadow:0 0 10px #3a0070; display:none; z-index:9999;
 }
 #muteBtn{
-    position:fixed;
-    top:20px;
-    left:20px;
-    background:#7a2cff;
-    color:#fff;
-    border:none;
-    padding:10px;
-    border-radius:10px;
-    cursor:pointer;
+    position:fixed; top:20px; left:20px;
+    background:#7a2cff; color:#fff; border:none; padding:10px;
+    border-radius:10px; cursor:pointer;
+}
+.addSection{
+    margin-top:10px; display:flex; gap:5px;
+}
+.addSection input{flex:1; padding:6px; border-radius:5px; border:none;}
+.addSection button{
+    padding:6px 10px; border:none; border-radius:5px; background:#7a2cff; color:#fff; cursor:pointer;
 }
 </style>
 </head>
 <body>
 
-<!-- تسجيل الدخول -->
 <div id="login">
     <div class="login-box">
         <h2>☠ تسجيل الدخول</h2>
@@ -193,15 +100,9 @@ header button{
     </div>
 </div>
 
-<!-- زر القائمة -->
-<header id="header">
-    <button onclick="toggleMenu()">≡</button>
-</header>
-
-<!-- زر كتم الموسيقى -->
+<header id="header"><button onclick="toggleMenu()">≡</button></header>
 <button id="muteBtn" onclick="toggleMute()">🔇</button>
 
-<!-- القائمة -->
 <div id="menu">
     <button onclick="showSection('welcome')">☠ الترحيب</button>
     <button onclick="showSection('laws')">☠ القوانين</button>
@@ -210,31 +111,19 @@ header button{
     <button onclick="showSection('gangs')">☠ العصابات</button>
     <button onclick="showSection('house')">☠ البيوت</button>
     <button onclick="showSection('house-gun')">☠ houses guns</button>
-    <button id="chatBtn" onclick="showSection('chat')">💬 دردشة</button>
+    <button onclick="showSection('chat')">💬 دردشة</button>
 </div>
 
-<!-- المحتوى -->
 <div id="content">
 <div class="cards" id="cardsContainer">
-
-<!-- الترحيب -->
 <div class="card big welcome" data-type="welcome">
-    <div class="welcome-title">
-        ☠ أهلاً بك <span class="welcome-name" id="userDisplay">عضو</span>
-    </div>
-    <div>
-        في عالم المافيا الروسية
-    </div>
-    <div class="welcome-motto">
-        ☠ الولاء قبل الدم ☠<br>
-        من يخون يُمحى… ومن يخلص يُرفع
-    </div>
+    <div class="welcome-title">☠ أهلاً بك <span class="welcome-name" id="userDisplay">عضو</span></div>
+    <div>في عالم المافيا الروسية</div>
+    <div class="welcome-motto">☠ الولاء قبل الدم ☠<br>من يخون يُمحى… ومن يخلص يُرفع</div>
 </div>
-
 </div>
 </div>
 
-<!-- دردشة -->
 <div id="chatContainer" style="display:none; padding:80px 15px;">
     <h3>💬 الدردشة</h3>
     <div id="chatMessages" style="margin-bottom:10px;"></div>
@@ -243,16 +132,13 @@ header button{
     <button onclick="sendMessage()">إرسال</button>
 </div>
 
-<!-- إشعارات -->
 <div class="notifications" id="notif"></div>
 
-<!-- موسيقى -->
 <audio id="bgMusic" loop>
-    <source src="mafia1.mp3" type="audio/mpeg">
+    <source src="mafia.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-// عناصر DOM
 const username = document.getElementById("username");
 const password = document.getElementById("password");
 const error = document.getElementById("error");
@@ -268,11 +154,11 @@ const chatInput = document.getElementById("chatInput");
 const chatImage = document.getElementById("chatImage");
 const muteBtn = document.getElementById("muteBtn");
 const music = document.getElementById("bgMusic");
+const cardsContainer = document.getElementById("cardsContainer");
 
 let currentUser = null;
 let isMuted = false;
 
-// الحسابات
 const ACCOUNTS = [
     {user:"b", pass:"b", admin:true},
     {user:"ايفان", pass:"8989", admin:true},
@@ -280,145 +166,126 @@ const ACCOUNTS = [
     {user:"ديمتري", pass:"more11", admin:false}
 ];
 
-// البيانات الافتراضية
 const defaultData = {
     weapons: ["AK-47","Deagle","C4","Glock 20"],
     gangs: ["سكراب"],
     house: ["Soon..."],
     "house-gun": ["Soon..."],
-    chat: []
+    chat: [],
+    laws:["تنفيذ الأوامر بدون نقاش"]
 };
 
-// تحميل البيانات من LocalStorage
 let DATA = JSON.parse(localStorage.getItem("mafiaData")) || defaultData;
 
-// حفظ البيانات
-function saveData(){
-    localStorage.setItem("mafiaData", JSON.stringify(DATA));
-}
+function saveData(){ localStorage.setItem("mafiaData", JSON.stringify(DATA)); }
+function showNotif(msg){ notif.innerText = msg; notif.style.display="block"; setTimeout(()=>notif.style.display="none",2000); }
 
-// إشعارات
-function showNotif(msg){
-    notif.innerText = msg;
-    notif.style.display="block";
-    setTimeout(()=>notif.style.display="none",2000);
-}
-
-// تسجيل الدخول
 function login(){
     const u = username.value.trim();
     const p = password.value.trim();
     const acc = ACCOUNTS.find(a=>a.user===u && a.pass===p);
     if(!acc){ error.style.display="block"; return; }
     currentUser = acc;
-    music.volume = 0.4;
+    music.volume=0.4;
     if(!isMuted) music.play();
-    loginDiv.style.display="none";
-    content.style.display="block";
-    header.style.display="block";
-    userDisplay.innerText = acc.user;
+    loginDiv.style.display="none"; content.style.display="block"; header.style.display="block";
+    userDisplay.innerText=acc.user;
     renderAll();
     showSection('welcome');
 }
 
-// إظهار القائمة
-function toggleMenu(){
-    menu.style.display = menu.style.display==="block"?"none":"block";
-}
+function toggleMenu(){menu.style.display=menu.style.display==="block"?"none":"block";}
+function toggleMute(){isMuted=!isMuted; if(isMuted) music.pause(); else music.play();}
 
-// كتم الصوت
-function toggleMute(){
-    isMuted = !isMuted;
-    if(isMuted) music.pause();
-    else music.play();
-}
-
-// إظهار القسم
 function showSection(type){
-    document.querySelectorAll(".card").forEach(c=>{
-        c.style.display="none";
-    });
-    chatContainer.style.display = type==="chat"? "block":"none";
-
+    document.querySelectorAll(".card").forEach(c=>c.style.display="none");
+    chatContainer.style.display = type==="chat"?"block":"none";
     if(type!=="chat"){
-        const container = document.getElementById("cardsContainer");
-        container.innerHTML = "";
-        DATA[type]?.forEach((item,i)=>{
-            if(!item.hidden || (item.hidden && currentUser.admin)){
-                const card = document.createElement("div");
-                card.className = "card";
-                card.dataset.type = type;
-                card.innerHTML = `<span>${item.text||item}</span>`;
-                if(item.img) card.innerHTML += `<img src="${item.img}" class="post-img">`;
-                if(currentUser.admin){
-                    const editBtn = document.createElement("button");
-                    editBtn.className="post-btn";
-                    editBtn.innerText="تعديل";
-                    editBtn.onclick = ()=>editItem(type,i);
-                    card.appendChild(editBtn);
-                }
-                container.appendChild(card);
+        renderSection(type);
+    }
+}
+
+function renderSection(type){
+    cardsContainer.innerHTML="";
+    if(DATA[type]){
+        DATA[type].forEach((item,i)=>{
+            const card = document.createElement("div");
+            card.className="card"; card.dataset.type=type;
+            let text="", img="";
+            if(typeof item==="string") text=item;
+            else{text=item.text||""; img=item.img||"";}
+            card.innerHTML=`<span>${text}</span>`;
+            if(img) card.innerHTML+=`<img src="${img}" class="post-img">`;
+            if(currentUser.admin){
+                const editBtn=document.createElement("button");
+                editBtn.className="post-btn"; editBtn.innerText="تعديل";
+                editBtn.onclick=()=>editItem(type,i);
+                card.appendChild(editBtn);
+                const delBtn=document.createElement("button");
+                delBtn.className="post-btn"; delBtn.innerText="حذف";
+                delBtn.style.right="60px";
+                delBtn.onclick=()=>{DATA[type].splice(i,1); saveData(); renderSection(type); showNotif("تم الحذف");};
+                card.appendChild(delBtn);
             }
+            cardsContainer.appendChild(card);
         });
-    }
-}
-
-// إضافة / تعديل عنصر
-function editItem(type,index){
-    const item = DATA[type][index];
-    const newText = prompt("عدّل النص:", item.text||item);
-    if(newText===null) return;
-    DATA[type][index].text = newText;
-    saveData();
-    renderAll();
-    showNotif("تم التعديل");
-}
-
-// إرسال رسالة دردشة
-function sendMessage(){
-    const text = chatInput.value.trim();
-    const file = chatImage.files[0];
-    let reader = null;
-    if(!text && !file){ alert("اكتب رسالة أو اختر صورة"); return; }
-    let msg = {user:currentUser.user, admin:currentUser.admin, text:"", img:""};
-    msg.text = text;
-    if(file){
-        reader = new FileReader();
-        reader.onload = ()=> {
-            msg.img = reader.result;
-            DATA.chat.push(msg);
-            saveData();
-            renderChat();
-            chatInput.value="";
-            chatImage.value="";
-            showNotif("تم الإرسال");
+        if(currentUser.admin){
+            const addDiv=document.createElement("div");
+            addDiv.className="addSection";
+            addDiv.innerHTML=`<input placeholder="أدخل جديد..." type="text"><input type="file"><button>إضافة</button>`;
+            const input = addDiv.children[0]; const file = addDiv.children[1]; const btn=addDiv.children[2];
+            btn.onclick=()=>{
+                let newItem={text:input.value};
+                if(file.files[0]){
+                    const reader=new FileReader();
+                    reader.onload=()=>{newItem.img=reader.result; DATA[type].push(newItem); saveData(); renderSection(type); showNotif("تم الإضافة");};
+                    reader.readAsDataURL(file.files[0]);
+                } else{DATA[type].push(newItem.text); saveData(); renderSection(type); showNotif("تم الإضافة");}
+                input.value=""; file.value="";
+            };
+            cardsContainer.appendChild(addDiv);
         }
-        reader.readAsDataURL(file);
-    } else {
-        DATA.chat.push(msg);
-        saveData();
-        renderChat();
-        chatInput.value="";
-        chatImage.value="";
-        showNotif("تم الإرسال");
     }
 }
 
-// عرض الدردشة
+function editItem(type,index){
+    let item = DATA[type][index];
+    let newText = prompt("عدّل النص:", typeof item==="string"?item:item.text||"");
+    if(newText===null) return;
+    if(typeof item==="string") DATA[type][index]=newText;
+    else DATA[type][index].text=newText;
+    saveData(); renderSection(type); showNotif("تم التعديل");
+}
+
+function sendMessage(){
+    const text=chatInput.value.trim();
+    const file=chatImage.files[0];
+    if(!text && !file){alert("اكتب رسالة أو اختر صورة"); return;}
+    let msg={user:currentUser.user, admin:currentUser.admin, text:"", img:""};
+    msg.text=text;
+    if(file){
+        const reader=new FileReader();
+        reader.onload=()=>{
+            msg.img=reader.result;
+            DATA.chat.push(msg); saveData(); renderChat(); chatInput.value=""; chatImage.value=""; showNotif("تم الإرسال");
+        };
+        reader.readAsDataURL(file);
+    } else{
+        DATA.chat.push(msg); saveData(); renderChat(); chatInput.value=""; showNotif("تم الإرسال");
+    }
+}
+
 function renderChat(){
     chatMessages.innerHTML="";
     DATA.chat.forEach((m,i)=>{
-        const div = document.createElement("div");
-        div.style.border="1px solid #7a2cff";
-        div.style.borderRadius="10px";
-        div.style.margin="5px 0";
-        div.style.padding="5px";
-        div.innerHTML = `<b>${m.user}${m.admin?" (أدمن)":""}:</b> ${m.text}`;
-        if(m.img) div.innerHTML += `<br><img src="${m.img}" class="post-img">`;
+        const div=document.createElement("div");
+        div.style.border="1px solid #7a2cff"; div.style.borderRadius="10px";
+        div.style.margin="5px 0"; div.style.padding="5px";
+        div.innerHTML=`<b>${m.user}${m.admin?" (أدمن)":""}:</b> ${m.text}`;
+        if(m.img) div.innerHTML+=`<br><img src="${m.img}" class="post-img">`;
         if(currentUser.admin || m.user===currentUser.user){
-            const delBtn = document.createElement("button");
-            delBtn.className="post-btn";
-            delBtn.innerText="حذف";
+            const delBtn=document.createElement("button");
+            delBtn.className="post-btn"; delBtn.innerText="حذف";
             delBtn.onclick=()=>{DATA.chat.splice(i,1); saveData(); renderChat(); showNotif("تم الحذف");};
             div.appendChild(delBtn);
         }
@@ -426,14 +293,10 @@ function renderChat(){
     });
 }
 
-// عرض كل القوائم
 function renderAll(){
-    ["weapons","gangs","house","house-gun"].forEach(t=>{
-        if(!DATA[t]) DATA[t]=[];
-    });
+    ["weapons","gangs","house","house-gun","laws"].forEach(t=>{if(!DATA[t]) DATA[t]=[];});
     renderChat();
 }
 </script>
-
 </body>
 </html>
